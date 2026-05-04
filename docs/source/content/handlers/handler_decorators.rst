@@ -1,5 +1,5 @@
-Handler Decorators
-====================
+Decoradores de Handler
+=======================
 
 .. currentmodule:: pywa.client
 

@@ -1,9 +1,9 @@
-Sending Messages
-================
+Enviando Mensagens
+==================
 
 
-Sending a text message
-----------------------
+Enviando uma mensagem de texto
+-------------------------------
 
 .. code-block:: python
     :caption: Text message

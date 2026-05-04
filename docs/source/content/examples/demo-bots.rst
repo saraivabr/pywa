@@ -1,13 +1,13 @@
-🤖 Demo Bots
-============
+🤖 Bots de Demonstração
+=======================
 
-This page contains some examples of bots you can create using pywa.
-Every example is a complete working bot that you can run on your own server.
+Esta página contém alguns exemplos de bots que você pode criar usando o pywa.
+Cada exemplo é um bot completo e funcional que você pode executar em seu próprio servidor.
 
-👋 Hello Bot
+👋 Bot de Olá
 --------------
 
-This is a simple bot that welcomes the user when they send a message.
+Este é um bot simples que dá boas-vindas ao usuário quando ele envia uma mensagem.
 
 .. code-block:: python
     :linenos:
@@ -33,10 +33,10 @@ This is a simple bot that welcomes the user when they send a message.
     flask_app.run()
 
 
-📝 Echo Bot
------------
+📝 Bot de Eco
+-------------
 
-This is a simple bot that echoes back the user's message.
+Este é um bot simples que repete a mensagem do usuário.
 
 
 .. code-block:: python
@@ -66,10 +66,10 @@ This is a simple bot that echoes back the user's message.
 
 
 
-⬆️ Url Uploader Bot
---------------------
+⬆️ Bot Enviador de URLs
+------------------------
 
-This is a simple bot that uploads files from URLs.
+Este é um bot simples que faz upload de arquivos a partir de URLs.
 
 .. code-block:: python
     :linenos:
@@ -100,12 +100,12 @@ This is a simple bot that uploads files from URLs.
     flask_app.run()
 
 
-🔢 Calculator WhatsApp Bot
----------------------------
+🔢 Bot de Calculadora para WhatsApp
+------------------------------------
 
-This is a simple calculator bot for WhatsApp. It can perform basic arithmetic operations on integers.
+Este é um bot de calculadora simples para o WhatsApp. Ele pode realizar operações aritméticas básicas com inteiros.
 
-Usage:
+Uso:
 
 >>> 1 + 2
 >>> 1 - 2
@@ -157,10 +157,10 @@ Usage:
     flask_app.run()
 
 
-🌐 Translator Bot
------------------
+🌐 Bot Tradutor
+----------------
 
-A simple WhatsApp bot that translates text messages to other languages.
+Um bot simples para WhatsApp que traduz mensagens de texto para outros idiomas.
 
 .. code-block:: python
     :linenos:
@@ -261,10 +261,10 @@ A simple WhatsApp bot that translates text messages to other languages.
     flask_app.run()
 
 
-🖼 Random image bot
--------------------
+🖼 Bot de imagem aleatória
+--------------------------
 
-This example shows how to create a simple bot that replies with a random image from Unsplash.
+Este exemplo mostra como criar um bot simples que responde com uma imagem aleatória do Unsplash.
 
 
 .. code-block:: python
@@ -295,10 +295,10 @@ This example shows how to create a simple bot that replies with a random image f
     flask_app.run()
 
 
-📸 Remove background from image
---------------------------------
+📸 Remover fundo de imagem
+--------------------------
 
-This example shows how to create a bot that removes the background from an image using the remove.bg API.
+Este exemplo mostra como criar um bot que remove o fundo de uma imagem usando a API do remove.bg.
 
 .. code-block:: python
     :linenos:

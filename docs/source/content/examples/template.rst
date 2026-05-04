@@ -1,14 +1,14 @@
-Template Examples
-=================
+Exemplos de Template
+=====================
 
 .. tip::
 
-    This page contains examples of template messages.
+    Esta página contém exemplos de mensagens de template.
 
-    You can find the code in the `tests/data/templates <https://github.com/david-lev/pywa/tree/master/tests/data/templates>`_ directory of the repository.
+    Você pode encontrar o código no diretório `tests/data/templates <https://github.com/david-lev/pywa/tree/master/tests/data/templates>`_ do repositório.
 
-Example of a template with buttons
----------------------------------
+Exemplo de template com botões
+--------------------------------
 
 .. literalinclude:: ../../../../tests/data/templates/buttons/examples.py
     :language: python
@@ -23,8 +23,8 @@ Example of a template with buttons
         :caption: JSON Code
 
 
-Example of authentication templates
----------------------------------
+Exemplo de templates de autenticação
+--------------------------------------
 
 .. literalinclude:: ../../../../tests/data/templates/authentication/examples.py
     :language: python
@@ -38,8 +38,8 @@ Example of authentication templates
         :linenos:
         :caption: JSON Code
 
-Example of a carousel template
----------------------------------
+Exemplo de template de carrossel
+----------------------------------
 
 .. literalinclude:: ../../../../tests/data/templates/carousel/examples.py
     :language: python
@@ -54,8 +54,8 @@ Example of a carousel template
         :caption: JSON Code
 
 
-Example of a limited time offer template
----------------------------------
+Exemplo de template de oferta por tempo limitado
+-------------------------------------------------
 
 .. literalinclude:: ../../../../tests/data/templates/limited_time_offer/examples.py
     :language: python

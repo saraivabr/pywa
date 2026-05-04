@@ -1,15 +1,15 @@
-Flows Examples
-===============
+Exemplos de Flows
+=================
 
 .. tip::
 
-    This page contains examples of flows for different versions of the WhatsApp Business API.
+    Esta página contém exemplos de flows para diferentes versões da WhatsApp Business API.
 
-    You can find the code in the `tests/data/flows <https://github.com/david-lev/pywa/tree/master/tests/data/flows>`_ directory of the repository.
+    Você pode encontrar o código no diretório `tests/data/flows <https://github.com/david-lev/pywa/tree/master/tests/data/flows>`_ do repositório.
 
 
-v7.1 Examples
----------------
+Exemplos v7.1
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/7_1/examples.py
     :language: python
@@ -23,8 +23,8 @@ v7.1 Examples
         :linenos:
         :caption: JSON Code
 
-v6.3 Examples
----------------
+Exemplos v6.3
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/6_3/examples.py
     :language: python
@@ -38,8 +38,8 @@ v6.3 Examples
         :linenos:
         :caption: JSON Code
 
-v6.2 Examples
----------------
+Exemplos v6.2
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/6_2/examples.py
     :language: python
@@ -53,8 +53,8 @@ v6.2 Examples
         :linenos:
         :caption: JSON Code
 
-v6.1 Examples
----------------
+Exemplos v6.1
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/6_1/examples.py
     :language: python
@@ -68,8 +68,8 @@ v6.1 Examples
         :linenos:
         :caption: JSON Code
 
-v6.0 Examples
----------------
+Exemplos v6.0
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/6_0/examples.py
     :language: python
@@ -83,8 +83,8 @@ v6.0 Examples
         :linenos:
         :caption: JSON Code
 
-v5.1 Examples
----------------
+Exemplos v5.1
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/5_1/examples.py
     :language: python
@@ -98,8 +98,8 @@ v5.1 Examples
         :linenos:
         :caption: JSON Code
 
-v5.0 Examples
----------------
+Exemplos v5.0
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/5_0/examples.py
     :language: python
@@ -113,8 +113,8 @@ v5.0 Examples
         :linenos:
         :caption: JSON Code
 
-v4.0 Examples
----------------
+Exemplos v4.0
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/4_0/examples.py
     :language: python
@@ -128,8 +128,8 @@ v4.0 Examples
         :linenos:
         :caption: JSON Code
 
-v2.1 Examples
----------------
+Exemplos v2.1
+--------------
 
 .. literalinclude:: ../../../../tests/data/flows/2_1/examples.py
     :language: python

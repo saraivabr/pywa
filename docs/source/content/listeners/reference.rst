@@ -1,5 +1,5 @@
-Listeners reference
-==================
+Referência de Listeners
+========================
 
 .. currentmodule:: pywa.client
 

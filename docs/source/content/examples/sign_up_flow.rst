@@ -1,42 +1,42 @@
-Sign Up Flow
-============
+Flow de Cadastro
+================
 
 .. currentmodule:: pywa.types.flows
 
-**In this example, we will create a sign up flow that allows users to sign up and login to their account.**
+**Neste exemplo, vamos criar um flow de cadastro que permite aos usuários se registrar e fazer login em suas contas.**
 
     .. image:: ../../../../_static/guides/sign-up-flow.webp
         :alt: Sign Up Flow
         :width: 100%
 
-Think of a Flow as a collection of related screens. The screens can exchange data with each other and with your server.
+Pense em um Flow como uma coleção de telas relacionadas. As telas podem trocar dados entre si e com o seu servidor.
 
-A screen can be static: it can display static content that configured when the flow is created. For example, a screen can
-display a generic welcome message without any dynamic content, or it can display a message that will be different for each user
-by providing the message text when the flow is sent to the user or when it requested from the server.
+Uma tela pode ser estática: ela pode exibir conteúdo estático configurado quando o flow é criado. Por exemplo, uma tela pode
+exibir uma mensagem de boas-vindas genérica sem nenhum conteúdo dinâmico, ou pode exibir uma mensagem que será diferente para cada usuário
+ao fornecer o texto da mensagem quando o flow é enviado ao usuário ou quando solicitado ao servidor.
 
-Almost every aspect of a screen component can be dynamic. For example, let's take the :class:`TextInput` component which is used to
-collect user input (e.g name, email, password, etc.). The label, the input type, the helper text, the minimum and maximum number of characters,
-and whether the input is required or not, if the field is pre-filled with a value, and if the field is disabled or not, can all be dynamic.
+Quase todo aspecto de um componente de tela pode ser dinâmico. Por exemplo, vamos considerar o componente :class:`TextInput`, usado para
+coletar a entrada do usuário (ex.: nome, e-mail, senha, etc.). O rótulo, o tipo de entrada, o texto de ajuda, o número mínimo e máximo de caracteres,
+se a entrada é obrigatória ou não, se o campo está pré-preenchido com um valor e se o campo está desabilitado ou não, podem ser todos dinâmicos.
 
-Each :class:`Screen` has
+Cada :class:`Screen` possui
 
-- A ``id``: The unique ID of the screen, which is used for navigation
-- A ``title``: The title of the screen, which is rendered at the top of the screen
-- A ``layout``: The layout of the screen, which contains the elements that are displayed on the screen.
-- A ``data``: The data that the screen expects to receive. This data is used to insert content and configure the screen
-  in order to make it dynamic.
+- Um ``id``: O ID único da tela, usado para navegação
+- Um ``title``: O título da tela, que é renderizado no topo da tela
+- Um ``layout``: O layout da tela, que contém os elementos exibidos nela.
+- Um ``data``: Os dados que a tela espera receber. Esses dados são usados para inserir conteúdo e configurar a tela
+  a fim de torná-la dinâmica.
 
-Important thing to understand is that it doesn't matter in which order the screens are defined, every screen is independent
-and has its own data.
+É importante entender que não importa em qual ordem as telas são definidas, cada tela é independente
+e possui seus próprios dados.
 
-I think it's easier to understand this with an examples, so let's get started.
+Acho que é mais fácil entender isso com exemplos, então vamos começar.
 
-Start Screen
---------------
+Tela Inicial
+-------------
 
-Let's start from the ``START`` screen. This screen welcomes the user and allows them to choose if they want to sign up
-(create an account) or login to their existing account.
+Vamos começar pela tela ``START``. Esta tela dá boas-vindas ao usuário e permite que ele escolha se deseja se cadastrar
+(criar uma conta) ou fazer login na conta existente.
 
 .. code-block:: python
     :caption: start_screen.py
@@ -87,25 +87,25 @@ Let's start from the ``START`` screen. This screen welcomes the user and allows 
         ),
     )
 
-This is an example of static screen. The screen doesn't expect to receive any data and all its components are pre-configured.
+Este é um exemplo de tela estática. A tela não espera receber nenhum dado e todos os seus componentes estão pré-configurados.
 
-The ``START`` screen has three components:
+A tela ``START`` possui três componentes:
 
-- A :class:`TextHeading`, which welcomes the user
-- A :class:`EmbeddedLink` with an :class:`Action` that navigates to the ``SIGN_UP`` screen
-- A :class:`EmbeddedLink` with an :class:`Action` that navigates to the ``LOGIN`` screen
+- Um :class:`TextHeading`, que dá boas-vindas ao usuário
+- Um :class:`EmbeddedLink` com uma :class:`Action` que navega para a tela ``SIGN_UP``
+- Um :class:`EmbeddedLink` com uma :class:`Action` que navega para a tela ``LOGIN``
 
-Each EmbeddedLink has an ``.on_click_action`` with Action value, so when the user clicks on the link, the action is triggered. In this case,
-the action is to :class:`FlowActionType.NAVIGATE` to another screen. The payload contains the data that will be passed to the navigated screen, in
-this case, we are passing the expected data of the ``SIGN_UP`` and ``LOGIN`` screens.
+Cada EmbeddedLink tem um ``.on_click_action`` com valor de Action, portanto, quando o usuário clica no link, a ação é acionada. Neste caso,
+a ação é :class:`FlowActionType.NAVIGATE` para outra tela. O payload contém os dados que serão passados para a tela navegada; neste
+caso, estamos passando os dados esperados das telas ``SIGN_UP`` e ``LOGIN``.
 
-We will see how this works later on.
+Veremos como isso funciona mais adiante.
 
 
-Sign Up Screen
---------------
+Tela de Cadastro
+-----------------
 
-The ``SIGN_UP`` screen allows the user to sign up (create an account). Let's take a look at the layout:
+A tela ``SIGN_UP`` permite que o usuário se cadastre (crie uma conta). Vamos ver o layout:
 
 
 .. code-block:: python
@@ -205,60 +205,60 @@ The ``SIGN_UP`` screen allows the user to sign up (create an account). Let's tak
     )
 
 
-Ok, that's a lot of code. Let's break it down.
+Ok, isso é muito código. Vamos analisar parte por parte.
 
-    In this examples we are using the walrus operator (:=) to assign values to variables. This allows us to use the
-    variables later on in the code without having to declare them outside of the layout and then assign them values later
+    Nestes exemplos estamos usando o operador walrus (:=) para atribuir valores a variáveis. Isso nos permite usar as
+    variáveis mais adiante no código sem precisar declará-las fora do layout e atribuir valores depois.
 
-The ``SIGN_UP`` screen expects to receive some data. In this case, we are expecting to receive some values to pre-fill the form fields.
+A tela ``SIGN_UP`` espera receber alguns dados. Neste caso, esperamos receber alguns valores para pré-preencher os campos do formulário.
 
-The data of the screen is represented by the ``.data`` property. The data is a list of :class:`ScreenData` objects.
+Os dados da tela são representados pela propriedade ``.data``. Os dados são uma lista de objetos :class:`ScreenData`.
 
-Every :class:`ScreenData` need to have a unique ``key`` and an ``example`` value. The example value is used to generate the appropriate
-JSON schema for the data. Also, we are assigning every :class:`ScreenData` to a variable (inlined with the walrus operator) so
-that we can use them later on in the code to reference the data and "use" it in the screen (e.g. ``first_name_initial_value.ref``).
+Cada :class:`ScreenData` precisa ter uma ``key`` única e um valor ``example``. O valor de exemplo é usado para gerar o
+esquema JSON apropriado para os dados. Além disso, estamos atribuindo cada :class:`ScreenData` a uma variável (inline com o operador walrus) para
+que possamos usá-las posteriormente no código para referenciar os dados e "utilizá-los" na tela (ex.: ``first_name_initial_value.ref``).
 
-The layout of the ``SIGN_UP`` screen contains the following elements:
+O layout da tela ``SIGN_UP`` contém os seguintes elementos:
 
-- A :class:`TextHeading`, which asks the user to enter their details
-- A :class:`EmbeddedLink` to the ``LOGIN`` screen, which allows the user to login if they already have an account (the user just remembered
-  that they already have an account)
-- A :class:`Form`, which contains the form fields that the user needs to fill in to sign up
-- A :class:`Footer`, which contains a button that the user can click to submit the form
+- Um :class:`TextHeading`, que pede ao usuário para inserir seus dados
+- Um :class:`EmbeddedLink` para a tela ``LOGIN``, que permite ao usuário fazer login caso já tenha uma conta (o usuário acabou de lembrar
+  que já tem uma conta)
+- Um :class:`Form`, que contém os campos do formulário que o usuário precisa preencher para se cadastrar
+- Um :class:`Footer`, que contém um botão que o usuário pode clicar para enviar o formulário
 
-The :class:`Form` fields are:
+Os campos do :class:`Form` são:
 
-- A :class:`TextInput` field for the first name, which is required
-- A :class:`TextInput` field for the last name, which is required
-- A :class:`TextInput` field for the email address (the input type is set to :class:`InputType.EMAIL`, so that the keyboard on the user's phone
-  will show the ``@`` symbol and validate the email address. Also, the input is required)
-- A :class:`TextInput` field for the password (the input type is set to :class:`InputType.PASSWORD`, so that the user's password is hidden when they type it)
-  We are also providing a helper text to tell the user that the password must contain at least one number. Also, the minimum number of characters is 8 and the maximum is 16, and the input is required)
-- A :class:`TextInput` field for the confirm password (the input type is set to :class:`InputType.PASSWORD`, so that the user's password is hidden when they re-type it)
+- Um campo :class:`TextInput` para o primeiro nome, que é obrigatório
+- Um campo :class:`TextInput` para o sobrenome, que é obrigatório
+- Um campo :class:`TextInput` para o endereço de e-mail (o tipo de entrada está definido como :class:`InputType.EMAIL`, para que o teclado no telefone do usuário
+  mostre o símbolo ``@`` e valide o endereço de e-mail; além disso, a entrada é obrigatória)
+- Um campo :class:`TextInput` para a senha (o tipo de entrada está definido como :class:`InputType.PASSWORD`, para que a senha do usuário fique oculta ao digitá-la)
+  Também fornecemos um texto de ajuda para informar ao usuário que a senha deve conter pelo menos um número. Além disso, o número mínimo de caracteres é 8 e o máximo é 16, e a entrada é obrigatória)
+- Um campo :class:`TextInput` para confirmar a senha (o tipo de entrada está definido como :class:`InputType.PASSWORD`, para que a senha do usuário fique oculta ao redigitá-la)
 
-Now, every form child get assigned to a variable (inlined with the walrus operator) so that we can use them later on in
-the code to reference the form fields and send their "values" to the server or to another screen (e.g. ``first_name.ref``).
+Agora, cada filho do formulário é atribuído a uma variável (inline com o operador walrus) para que possamos usá-los posteriormente no
+código para referenciar os campos do formulário e enviar seus "valores" ao servidor ou para outra tela (ex.: ``first_name.ref``).
 
-The :class:`Footer` contains a button that the user can click to submit the form. When the user clicks on the button, the :class:`Action`
-:class:`FlowActionType.DATA_EXCHANGE` is triggered. This action type allows us to send data to the server and then decide what to do next (for example,
-if the user is already registered, we can navigate to the ``LOGIN`` screen, or if the password and confirm password do not match,
-we can show an error message and ask the user to try again).
+O :class:`Footer` contém um botão que o usuário pode clicar para enviar o formulário. Quando o usuário clica no botão, a :class:`Action`
+:class:`FlowActionType.DATA_EXCHANGE` é acionada. Este tipo de ação nos permite enviar dados ao servidor e então decidir o que fazer a seguir (por exemplo,
+se o usuário já estiver registrado, podemos navegar para a tela ``LOGIN``, ou se a senha e a confirmação de senha não coincidirem,
+podemos mostrar uma mensagem de erro e pedir ao usuário para tentar novamente).
 
-The payload of the :class:`Action` of the :class:`Footer` contains the data that we want to send to the server. In this case, we are sending
-the values of the form fields. The values can be either a :class:`ScreenDataRef` or a :class:`ComponentRef`. A :class:`ScreenDataRef` is used to reference
-a screen's ``.data`` items and a :class:`ComponentRef` is used to reference :class:`Form` children.
-Because we are using the walrus operator to assign the form fields to variables, we can use the variables to reference the form fields
-by using the the ``.ref`` property of the form field (which is more type-safe than using the :class:`ComponentRef` with the form field's name).
-
-
-The ``.ref`` property are equivalent to the :class:`ComponentRef` with the form component name and the :class:`ScreenDataRef` with the
-screen's reference, respectively. Infact, the ``.ref`` properties are just shortcuts for the :class:`ComponentRef` and :class:`ScreenDataRef` classes.
+O payload da :class:`Action` do :class:`Footer` contém os dados que queremos enviar ao servidor. Neste caso, estamos enviando
+os valores dos campos do formulário. Os valores podem ser um :class:`ScreenDataRef` ou um :class:`ComponentRef`. Um :class:`ScreenDataRef` é usado para referenciar
+os itens de ``.data`` de uma tela e um :class:`ComponentRef` é usado para referenciar filhos de :class:`Form`.
+Como estamos usando o operador walrus para atribuir os campos do formulário a variáveis, podemos usar as variáveis para referenciar os campos do formulário
+usando a propriedade ``.ref`` do campo (que é mais segura quanto a tipos do que usar :class:`ComponentRef` com o nome do campo do formulário).
 
 
-Sign In Screen
+As propriedades ``.ref`` são equivalentes ao :class:`ComponentRef` com o nome do componente do formulário e ao :class:`ScreenDataRef` com a
+referência da tela, respectivamente. Na verdade, as propriedades ``.ref`` são apenas atalhos para as classes :class:`ComponentRef` e :class:`ScreenDataRef`.
+
+
+Tela de Login
 --------------
 
-Ok, now to the ``LOGIN`` screen. This screen allows the user to login to their existing account.
+Ok, agora para a tela ``LOGIN``. Esta tela permite que o usuário faça login na conta existente.
 
 
 .. code-block:: python
@@ -330,21 +330,21 @@ Ok, now to the ``LOGIN`` screen. This screen allows the user to login to their e
     )
 
 
-This screen is very straightforward. It has two elements:
+Esta tela é bastante direta. Ela tem dois elementos:
 
-- A :class:`TextInput` field for the email address (the input type is set to :class:`InputType.EMAIL`, so that the keyboard on the user's phone
-  will show the ``@`` symbol and validate the email address)
-- A :class:`TextInput` field for the password (the input type is set to :class:`InputType.PASSWORD`, so that the user's password is hidden when they type it)
+- Um campo :class:`TextInput` para o endereço de e-mail (o tipo de entrada está definido como :class:`InputType.EMAIL`, para que o teclado no telefone do usuário
+  mostre o símbolo ``@`` e valide o endereço de e-mail)
+- Um campo :class:`TextInput` para a senha (o tipo de entrada está definido como :class:`InputType.PASSWORD`, para que a senha do usuário fique oculta ao digitá-la)
 
-The :class:`Footer` contains a button that the user can click to submit the form. When the user clicks on the button, We are using the
-:class:`FlowActionType.DATA_EXCHANGE` action type to send the email and password that the user entered, to the server and then decide what to do next (for example,
-if the user is not registered, we can navigate to the ``SIGN_UP`` screen, or if the password is incorrect, we can show an error message and ask
-the user to try again).
+O :class:`Footer` contém um botão que o usuário pode clicar para enviar o formulário. Quando o usuário clica no botão, usamos o
+tipo de ação :class:`FlowActionType.DATA_EXCHANGE` para enviar o e-mail e a senha inseridos ao servidor e então decidir o que fazer a seguir (por exemplo,
+se o usuário não estiver registrado, podemos navegar para a tela ``SIGN_UP``, ou se a senha estiver incorreta, podemos mostrar uma mensagem de erro e pedir
+ao usuário para tentar novamente).
 
-Login Success Screen
---------------------
+Tela de Sucesso no Login
+------------------------
 
-Now, to the last screen, the ``LOGIN_SUCCESS`` screen. This screen is displayed when the user successfully logs in:
+Agora, para a última tela, a tela ``LOGIN_SUCCESS``. Esta tela é exibida quando o usuário faz login com sucesso:
 
 .. code-block:: python
     :caption: login_success_screen.py
@@ -385,23 +385,23 @@ Now, to the last screen, the ``LOGIN_SUCCESS`` screen. This screen is displayed 
         ),
     )
 
-This screen has two elements:
+Esta tela tem dois elementos:
 
-- A :class:`TextHeading`, which welcomes the user to the store
-- A :class:`TextSubheading`, which tells the user that they are now logged in
-- A :class:`Form`, which contains an :class:`OptIn` field that asks the user if they want to stay logged in
+- Um :class:`TextHeading`, que dá boas-vindas ao usuário na loja
+- Um :class:`TextSubheading`, que informa ao usuário que ele está agora conectado
+- Um :class:`Form`, que contém um campo :class:`OptIn` que pergunta ao usuário se ele quer permanecer conectado
 
-The :class:`Footer` contains a button that the user can click to submit the form. The ``COMPLETE`` action is used to complete the flow.
-When the user clicks on the button, we are using the :class:`FlowActionType.COMPLETE` action to send the value of the :class:`OptIn` field to the server and
-then complete the flow.
+O :class:`Footer` contém um botão que o usuário pode clicar para enviar o formulário. A ação ``COMPLETE`` é usada para concluir o flow.
+Quando o usuário clica no botão, usamos a ação :class:`FlowActionType.COMPLETE` para enviar o valor do campo :class:`OptIn` ao servidor e
+então concluir o flow.
 
-This screen is the only screen that can complete the flow, that's why we are setting the ``terminal`` property to ``True``.
+Esta tela é a única que pode concluir o flow, por isso estamos definindo a propriedade ``terminal`` como ``True``.
 
 
-Creating the Flow
------------------
+Criando o Flow
+--------------
 
-Now, we need to wrap everything in a :class:`FlowJSON` object and create the flow:
+Agora, precisamos encapsular tudo em um objeto :class:`FlowJSON` e criar o flow:
 
 .. code-block:: python
     :linenos:
@@ -427,15 +427,15 @@ Now, we need to wrap everything in a :class:`FlowJSON` object and create the flo
     )
 
 
-The :class:`FlowJSON` object contains the following properties:
+O objeto :class:`FlowJSON` contém as seguintes propriedades:
 
-- ``data_api_version``: The version of the data API that we are using. We are using the latest version, which is ``Version.FLOW_DATA_API``
-- ``routing_model``: The routing model of the flow. This is used to define the flow's navigation. In this case, we are using a simple routing model
-  that allows us to navigate from the ``START`` screen to the ``SIGN_UP`` and ``LOGIN`` screens, from the ``SIGN_UP`` screen to the ``LOGIN`` screen (and the other way around),
-  and from the ``LOGIN`` screen to the ``LOGIN_SUCCESS`` screen. The ``LOGIN_SUCCESS`` can't navigate to any other screen.
-- ``screens``: The screens of the flow. In this case, we are using the screens that we created earlier.
+- ``data_api_version``: A versão da API de dados que estamos usando. Estamos usando a versão mais recente, que é ``Version.FLOW_DATA_API``
+- ``routing_model``: O modelo de roteamento do flow. Ele é usado para definir a navegação do flow. Neste caso, usamos um modelo de roteamento simples
+  que nos permite navegar da tela ``START`` para as telas ``SIGN_UP`` e ``LOGIN``, da tela ``SIGN_UP`` para a tela ``LOGIN`` (e vice-versa),
+  e da tela ``LOGIN`` para a tela ``LOGIN_SUCCESS``. A tela ``LOGIN_SUCCESS`` não pode navegar para nenhuma outra tela.
+- ``screens``: As telas do flow. Neste caso, estamos usando as telas que criamos anteriormente.
 
-Here is all the flow code in one place:
+Aqui está todo o código do flow em um único lugar:
 
 .. toggle::
 
@@ -703,7 +703,7 @@ Here is all the flow code in one place:
             ]
         )
 
-And if you want to go to the `WhatsApp Flows Playground <https://business.facebook.com/wa/manage/flows>`_ and see the flow in action, copy the equivalent JSON to the playground:
+E se você quiser ir ao `WhatsApp Flows Playground <https://business.facebook.com/wa/manage/flows>`_ e ver o flow em ação, copie o JSON equivalente para o playground:
 
 .. toggle::
 
@@ -1012,7 +1012,7 @@ And if you want to go to the `WhatsApp Flows Playground <https://business.facebo
 
 
 
-Creating the flow is very simple using the :meth:`~pywa.client.WhatsApp.create_flow` method:
+Criar o flow é muito simples usando o método :meth:`~pywa.client.WhatsApp.create_flow`:
 
 .. code-block:: python
     :linenos:
@@ -1031,8 +1031,8 @@ Creating the flow is very simple using the :meth:`~pywa.client.WhatsApp.create_f
         categories=[FlowCategory.SIGN_IN, FlowCategory.SIGN_UP],
     )
 
-Because we are going to exchange data with our server, we need to provide endpoint URI for the flow. This is the URI that
-WhatsApp will use to send data to our server. We can do this by using the :meth:`~pywa.client.WhatsApp.update_flow_metadata` method:
+Como vamos trocar dados com o nosso servidor, precisamos fornecer um URI de endpoint para o flow. Este é o URI que
+o WhatsApp usará para enviar dados ao nosso servidor. Podemos fazer isso usando o método :meth:`~pywa.client.WhatsApp.update_flow_metadata`:
 
 .. code-block:: python
     :linenos:
@@ -1042,9 +1042,9 @@ WhatsApp will use to send data to our server. We can do this by using the :meth:
         endpoint_uri="https://my-server.com/sign-up-flow",
     )
 
-This endpoint must, of course, be pointing to our server. We can use serveo, localtunnel or a similar tool to expose our server to the internet.
+Este endpoint deve, é claro, apontar para o nosso servidor. Podemos usar serveo, localtunnel ou uma ferramenta similar para expor nosso servidor à internet.
 
-Finally, let's update the flow's JSON with :meth:`~pywa.client.WhatsApp.update_flow_json`:
+Por fim, vamos atualizar o JSON do flow com :meth:`~pywa.client.WhatsApp.update_flow_json`:
 
 .. code-block:: python
     :linenos:
@@ -1061,10 +1061,10 @@ Finally, let's update the flow's JSON with :meth:`~pywa.client.WhatsApp.update_f
         print("Flow updating failed")
         print(wa.get_flow(flow_id=flow_id).validation_errors)
 
-Storing Users
--------------
+Armazenando Usuários
+--------------------
 
-After the flow updates successfully, we can start with our server logic. First we need a simple user repository to store the users:
+Após a atualização do flow ser concluída com sucesso, podemos iniciar a lógica do servidor. Primeiro, precisamos de um repositório de usuários simples para armazená-los:
 
 .. code-block:: python
     :linenos:
@@ -1096,12 +1096,12 @@ After the flow updates successfully, we can start with our server logic. First w
     user_repository = UserRepository()  # create an instance of the user repository
 
 
-Of course, in a real application, we would use a real database to store the users (and we never store the passwords in plain text...).
+Claro, em uma aplicação real, usaríamos um banco de dados real para armazenar os usuários (e nunca armazenamos senhas em texto puro...).
 
-Sending the Flow
-----------------
+Enviando o Flow
+---------------
 
-To send the flow we need to initialize the :class:`~pywa.client.WhatsApp` client with some specific parameters:
+Para enviar o flow, precisamos inicializar o cliente :class:`~pywa.client.WhatsApp` com alguns parâmetros específicos:
 
 .. code-block:: python
     :caption: main.py
@@ -1126,21 +1126,21 @@ To send the flow we need to initialize the :class:`~pywa.client.WhatsApp` client
     )
 
 
-The :class:`~pywa.client.WhatsApp` class takes a few parameters:
+A classe :class:`~pywa.client.WhatsApp` recebe alguns parâmetros:
 
-- ``phone_id``: The phone ID of the WhatsApp account that we are using to send and receive messages
-- ``token``: The token of the WhatsApp account that we are using to send and receive messages
-- ``server``: The FastAPI app that we created earlier, which will be used to register the routes
-- ``callback_url``: The URL that WhatsApp will use to send us updates
-- ``webhook_endpoint``: The endpoint that WhatsApp will use to send us updates
-- ``verify_token``: Used by WhatsApp to challenge the server when we register the webhook
-- ``app_id``: The ID of the WhatsApp App, needed to register the callback URL
-- ``app_secret``: The secret of the WhatsApp App, needed to register the callback URL
-- ``business_private_key``: The private key of the WhatsApp Business Account, needed to decrypt the flow requests (see `here <../flows/overview.html#handling-flow-requests-and-responding-to-them>`_ for more info)
-- ``business_private_key_password``: The passphrase of the private_key, if it has one
+- ``phone_id``: O ID do telefone da conta WhatsApp que estamos usando para enviar e receber mensagens
+- ``token``: O token da conta WhatsApp que estamos usando para enviar e receber mensagens
+- ``server``: O app FastAPI que criamos anteriormente, que será usado para registrar as rotas
+- ``callback_url``: A URL que o WhatsApp usará para nos enviar atualizações
+- ``webhook_endpoint``: O endpoint que o WhatsApp usará para nos enviar atualizações
+- ``verify_token``: Usado pelo WhatsApp para verificar o servidor quando registramos o webhook
+- ``app_id``: O ID do App WhatsApp, necessário para registrar a URL de callback
+- ``app_secret``: O segredo do App WhatsApp, necessário para registrar a URL de callback
+- ``business_private_key``: A chave privada da Conta Comercial do WhatsApp, necessária para descriptografar as requisições do flow (veja `aqui <../flows/overview.html#handling-flow-requests-and-responding-to-them>`_ para mais informações)
+- ``business_private_key_password``: A senha da private_key, se ela tiver uma
 
 
-First let's send the flow!
+Primeiro, vamos enviar o flow!
 
 .. code-block:: python
     :linenos:
@@ -1161,27 +1161,27 @@ First let's send the flow!
         )
     )
 
-Ok, let's break this down:
+Ok, vamos analisar isso:
 
-Sending a flow is very simple. We sending text (or image, video etc.) message with a :class:`~pywa.types.callback.FlowButton`. The FlowButton contains the following properties:
+Enviar um flow é muito simples. Enviamos uma mensagem de texto (ou imagem, vídeo, etc.) com um :class:`~pywa.types.callback.FlowButton`. O FlowButton contém as seguintes propriedades:
 
-- ``title``: The title of the button (the text that the user will see on the button)
-- ``flow_id``: The ID of the flow that we want to send
-- ``mode``: The mode of the flow. We are using ``FlowStatus.DRAFT`` because we are still testing the flow. When we are ready to publish the flow, we can change the mode to ``FlowStatus.PUBLISHED``
-- ``flow_action_type``: The action that will be triggered when the user clicks on the button. In this case, we are using ``FlowActionType.NAVIGATE`` to navigate to the ``START`` screen
-- ``flow_action_screen``: The name of the screen that we want to navigate to. In this case, we are using ``START``
+- ``title``: O título do botão (o texto que o usuário verá no botão)
+- ``flow_id``: O ID do flow que queremos enviar
+- ``mode``: O modo do flow. Estamos usando ``FlowStatus.DRAFT`` porque ainda estamos testando o flow. Quando estivermos prontos para publicar o flow, podemos alterar o modo para ``FlowStatus.PUBLISHED``
+- ``flow_action_type``: A ação que será acionada quando o usuário clicar no botão. Neste caso, usamos ``FlowActionType.NAVIGATE`` para navegar para a tela ``START``
+- ``flow_action_screen``: O nome da tela para a qual queremos navegar. Neste caso, usamos ``START``
 
-- ``flow_token``: The unique token for this specific flow.
+- ``flow_token``: O token único para este flow específico.
 
-When the flow request is sent to our server, we don't know which flow and which user the request is for. We only know the flow token.
-So, the flow token is used to give us some context about the flow request. We can use the flow token to identify the user and the flow.
-The flow token can be saved in a database or in-memory cache, and be mapped to the user ID and the flow ID (in cases you have multiple flows running at your application).
-And when requests are coming, you can use the flow token to identify the user and the flow and make the appropriate actions for the request.
+Quando a requisição do flow é enviada ao nosso servidor, não sabemos qual flow e qual usuário é para a requisição. Só sabemos o token do flow.
+Portanto, o token do flow é usado para nos dar algum contexto sobre a requisição. Podemos usar o token do flow para identificar o usuário e o flow.
+O token do flow pode ser salvo em um banco de dados ou em cache de memória, e ser mapeado para o ID do usuário e o ID do flow (em casos onde você tem múltiplos flows rodando na sua aplicação).
+E quando as requisições chegarem, você pode usar o token do flow para identificar o usuário e o flow e tomar as ações apropriadas para a requisição.
 
-    The flow token can be also used to invalidate the flow, by raising FlowTokenNoLongerValid exception with appropriate error_message.
+    O token do flow também pode ser usado para invalidar o flow, ao lançar a exceção FlowTokenNoLongerValid com uma error_message adequada.
 
-A good practice is to generate a unique token for each flow request. This way, we can be sure that the token is unique and that we can identify the user and the flow.
-You can use the :mod:`uuid` module to generate a unique token:
+Uma boa prática é gerar um token único para cada requisição de flow. Dessa forma, podemos ter certeza de que o token é único e que podemos identificar o usuário e o flow.
+Você pode usar o módulo :mod:`uuid` para gerar um token único:
 
 .. code-block:: python
     :linenos:
@@ -1191,7 +1191,7 @@ You can use the :mod:`uuid` module to generate a unique token:
     flow_token = str(uuid.uuid4())
 
 
-After we create the WhatsApp instance and we send the flow, we can start listening to flow requests:
+Depois que criamos a instância do WhatsApp e enviamos o flow, podemos começar a ouvir as requisições do flow:
 
 .. code-block:: python
     :linenos:
@@ -1207,36 +1207,36 @@ After we create the WhatsApp instance and we send the flow, we can start listeni
         ...
 
 
-The :meth:`~pywa.client.WhatsApp.on_flow_request` decorator takes the endpoint URI as a parameter. This is the endpoint that we provided when we updated the flow's metadata.
-So if the endpoint URI is ``https://my-server.com/sign-up-flow``, then the endpoint URI that we are listening to is ``/sign-up-flow``.
+O decorador :meth:`~pywa.client.WhatsApp.on_flow_request` recebe o URI do endpoint como parâmetro. Este é o endpoint que fornecemos ao atualizar os metadados do flow.
+Portanto, se o URI do endpoint for ``https://my-server.com/sign-up-flow``, o URI do endpoint que estamos ouvindo é ``/sign-up-flow``.
 
-    Yes, you can point multiple flows to the same endpoint URI. But then you need to find a way to identify the flow by the flow token.
-    I recommend creating a unique endpoint URI for each flow.
-
-
-Our ``on_sign_up_request`` calback function takes two parameters:
-
-- ``wa``: The :class:`~pywa.client.WhatsApp` class instance
-- ``flow``: A :class:`FlowRequest` object, which contains the flow request data
-
-The flow request contains the following properties:
-
-- ``version``: The version of the flow data API that the flow request is using (you should use thisn version in the response)
-- ``flow_token``: The token of the flow (the same token that we provided when we sent the flow)
-- ``action``: The action type that was triggered the request. ``FlowActionType.DATA_EXCHANGE`` in our case.
-- ``screen``: The name of the screen that the user is currently on (We have two screens with data exchange actions, so we need to know which screen the user is currently on)
-- ``data``: The data that the action sent to the server (the ``payload`` property of the action)
+    Sim, você pode apontar múltiplos flows para o mesmo URI de endpoint. Mas então você precisa encontrar uma forma de identificar o flow pelo token do flow.
+    Recomendo criar um URI de endpoint único para cada flow.
 
 
-In the top of the function, we are checking if the flow request has an error. If it does, we are logging the error and returning.
+Nossa função de callback ``on_sign_up_request`` recebe dois parâmetros:
 
-    By default, if the flow has error, ``pywa`` will ignore the callback return value and will acknowledge the error.
-    This behavior can be changed by setting ``acknowledge_errors`` parameter to ``False`` in ``on_flow_request`` decorator.
+- ``wa``: A instância da classe :class:`~pywa.client.WhatsApp`
+- ``flow``: Um objeto :class:`FlowRequest`, que contém os dados da requisição do flow
 
-Handling Sign Up Flow Requests
-------------------------------
+A requisição do flow contém as seguintes propriedades:
 
-Now, let's handle the flow request. we can handle all the screens in one code block but for the sake of simplicity, we will handle each screen separately:
+- ``version``: A versão da API de dados do flow que a requisição está usando (você deve usar esta versão na resposta)
+- ``flow_token``: O token do flow (o mesmo token que fornecemos ao enviar o flow)
+- ``action``: O tipo de ação que acionou a requisição. ``FlowActionType.DATA_EXCHANGE`` no nosso caso.
+- ``screen``: O nome da tela em que o usuário está atualmente (temos duas telas com ações de troca de dados, então precisamos saber em qual tela o usuário está)
+- ``data``: Os dados que a ação enviou ao servidor (a propriedade ``payload`` da ação)
+
+
+No início da função, verificamos se a requisição do flow tem um erro. Se tiver, registramos o erro e retornamos.
+
+    Por padrão, se o flow tiver erro, o ``pywa`` ignorará o valor de retorno do callback e reconhecerá o erro.
+    Esse comportamento pode ser alterado definindo o parâmetro ``acknowledge_errors`` como ``False`` no decorador ``on_flow_request``.
+
+Tratando Requisições do Flow de Cadastro
+-----------------------------------------
+
+Agora, vamos tratar a requisição do flow. Podemos tratar todas as telas em um único bloco de código, mas por simplicidade, trataremos cada tela separadamente:
 
 .. code-block:: python
     :linenos:
@@ -1310,12 +1310,12 @@ Now, let's handle the flow request. we can handle all the screens in one code bl
         )
 
 
-So, what's going on here?
+Então, o que está acontecendo aqui?
 
 .. note::
 
-    The :meth:`~pywa.handlers.FlowRequestCallbackWrapper.on` decorator added in version ``1.22.0``.
-    before that, you need to handle the action and screen in the function itself (or manually filter the data).
+    O decorador :meth:`~pywa.handlers.FlowRequestCallbackWrapper.on` foi adicionado na versão ``1.22.0``.
+    Antes disso, você precisa tratar a ação e a tela na própria função (ou filtrar os dados manualmente).
 
     .. code-block:: python
         :linenos:
@@ -1337,22 +1337,22 @@ So, what's going on here?
                 elif flow.screen == "LOGIN_SUCCESS":
                     ...
 
-This function handles the ``SIGN_UP`` screen.
+Esta função trata a tela ``SIGN_UP``.
 
-We need to check a few things:
+Precisamos verificar algumas coisas:
 
-- Check if the user is already registered. If they are, we need to navigate to the ``LOGIN`` screen and show an error message
-- Check if the password and confirm password match. If they don't, we navigate again to ``SIGN_UP`` screen and show an error message
-- Check if the password contains at least one number. If it doesn't, we navigate again to ``SIGN_UP`` screen and show an error message
-- If everything is ok, we create the user and navigate to the ``LOGIN`` screen (with the email address already filled in 😋)
+- Verificar se o usuário já está registrado. Se estiver, precisamos navegar para a tela ``LOGIN`` e mostrar uma mensagem de erro
+- Verificar se a senha e a confirmação de senha coincidem. Se não coincidirem, navegamos novamente para a tela ``SIGN_UP`` e mostramos uma mensagem de erro
+- Verificar se a senha contém pelo menos um número. Se não contiver, navegamos novamente para a tela ``SIGN_UP`` e mostramos uma mensagem de erro
+- Se tudo estiver ok, criamos o usuário e navegamos para a tela ``LOGIN`` (com o endereço de e-mail já preenchido 😋)
 
-    Now you understand why ``SIGN_UP`` screen get's initial values? because we don't want the user to re-enter the data again if there is an error.
-    From the same reason, ``LOGIN`` screen get's initial values too, so when the sign up succeeds, the user will be navigated to the ``LOGIN`` screen with the email address already filled in.
+    Agora você entende por que a tela ``SIGN_UP`` recebe valores iniciais? Porque não queremos que o usuário insira os dados novamente se houver um erro.
+    Pelo mesmo motivo, a tela ``LOGIN`` também recebe valores iniciais, então quando o cadastro for concluído com sucesso, o usuário será navegado para a tela ``LOGIN`` com o endereço de e-mail já preenchido.
 
-Handling Login Flow Requests
-----------------------------
+Tratando Requisições do Flow de Login
+--------------------------------------
 
-Now, let's handle the ``LOGIN`` screen:
+Agora, vamos tratar a tela ``LOGIN``:
 
 .. code-block:: python
     :linenos:
@@ -1402,16 +1402,16 @@ Now, let's handle the ``LOGIN`` screen:
         )
 
 
-The ``LOGIN`` screen is very similar to the ``SIGN_UP`` screen. We need to check a few things:
+A tela ``LOGIN`` é muito semelhante à tela ``SIGN_UP``. Precisamos verificar algumas coisas:
 
-- Check if the user is registered. If they are not, we need to navigate to the ``SIGN_UP`` screen and show an error message
-- Check if the password is correct. If it's not, we need to navigate again to ``LOGIN`` screen and show an error message
-- If everything is ok, we navigate to the ``LOGIN_SUCCESS`` screen
+- Verificar se o usuário está registrado. Se não estiver, precisamos navegar para a tela ``SIGN_UP`` e mostrar uma mensagem de erro
+- Verificar se a senha está correta. Se não estiver, precisamos navegar novamente para a tela ``LOGIN`` e mostrar uma mensagem de erro
+- Se tudo estiver ok, navegamos para a tela ``LOGIN_SUCCESS``
 
-Handling the Flow Requests
---------------------------
+Tratando as Requisições do Flow
+--------------------------------
 
-Let's modify out ``on_sign_up_request`` callback function to handle the ``SIGN_UP`` and ``LOGIN`` screens:
+Vamos modificar nossa função de callback ``on_sign_up_request`` para tratar as telas ``SIGN_UP`` e ``LOGIN``:
 
 .. code-block:: python
     :linenos:
@@ -1423,10 +1423,10 @@ Let's modify out ``on_sign_up_request`` callback function to handle the ``SIGN_U
             return
 
 
-Handling Flow Completion
-------------------------
+Tratando a Conclusão do Flow
+-----------------------------
 
-The ``LOGIN_SUCCESS`` scrren completes the flow, so we don't need to do anything here. instead we need to handle the flow completion:
+A tela ``LOGIN_SUCCESS`` conclui o flow, então não precisamos fazer nada aqui. Em vez disso, precisamos tratar a conclusão do flow:
 
 .. code-block:: python
     :linenos:
@@ -1437,26 +1437,26 @@ The ``LOGIN_SUCCESS`` scrren completes the flow, so we don't need to do anything
         print(flow.token)
         print(flow.response)
 
-Now, in a real application, this is the time to mark the user as logged in and allow them to perform actions in their account.
-You can also implement some kind of session management, so that the user will stay logged in for a certain amount of time and then require them to login again.
+Agora, em uma aplicação real, este é o momento de marcar o usuário como conectado e permitir que ele realize ações em sua conta.
+Você também pode implementar algum tipo de gerenciamento de sessão, para que o usuário permaneça conectado por um determinado período e depois precise fazer login novamente.
 
-Running the Server
-------------------
+Executando o Servidor
+----------------------
 
-The last thing that we need to do is run the server:
+A última coisa que precisamos fazer é executar o servidor:
 
 .. code-block:: bash
 
     fastapi dev wa.py
 
-What's Next?
-------------
+O Que Vem a Seguir?
+-------------------
 
-Now that you know how to create and send a flow, you can try to add the following features to the flow:
+Agora que você sabe como criar e enviar um flow, pode tentar adicionar as seguintes funcionalidades ao flow:
 
-- A ``FORGOT_PASSWORD`` screen, which allows the user to reset their password if they forgot it
-- A more detailed ``LOGIN_SUCCESS`` screen, which shows the user's name, email address and other details
-- Try to adding a nice image to the ``START`` screen, to make it more appealing
-- A ``LOGOUT`` screen, which allows the user to logout from their account
-- Allow the user to change their email & password
-- Allow the user to close the flow at any screen
+- Uma tela ``FORGOT_PASSWORD``, que permite ao usuário redefinir sua senha caso a tenha esquecido
+- Uma tela ``LOGIN_SUCCESS`` mais detalhada, que mostra o nome do usuário, endereço de e-mail e outros detalhes
+- Tente adicionar uma imagem bonita à tela ``START`` para torná-la mais atraente
+- Uma tela ``LOGOUT``, que permite ao usuário sair da conta
+- Permitir que o usuário altere seu e-mail e senha
+- Permitir que o usuário feche o flow em qualquer tela
