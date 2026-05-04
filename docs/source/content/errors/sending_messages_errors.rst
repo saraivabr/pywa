@@ -1,5 +1,5 @@
-Sending Messages Errors
-=======================
+Erros de Envio de Mensagens
+===========================
 
 .. currentmodule:: pywa.errors
 

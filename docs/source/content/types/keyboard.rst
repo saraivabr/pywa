@@ -1,4 +1,4 @@
-Keyboard
+Teclado
 ==============
 
 .. currentmodule:: pywa.types.callback

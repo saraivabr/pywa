@@ -1,5 +1,5 @@
-Integrity Errors
-================
+Erros de Integridade
+====================
 
 .. currentmodule:: pywa.errors
 

@@ -1,5 +1,5 @@
-Block Users Errors
-===================
+Erros de Bloqueio de Usuários
+=============================
 
 .. currentmodule:: pywa.errors
 

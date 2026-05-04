@@ -1,5 +1,5 @@
-Flows Errors
-============
+Erros de Flows
+==============
 
 .. currentmodule:: pywa.errors
 

@@ -1,5 +1,5 @@
-Template Types
-==============
+Tipos de Template
+=================
 
 .. currentmodule:: pywa.types.templates
 
