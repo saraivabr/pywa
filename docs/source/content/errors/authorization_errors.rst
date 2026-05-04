@@ -1,5 +1,5 @@
-Authorization Errors
-======================
+Erros de Autorização
+====================
 
 .. currentmodule:: pywa.errors
 

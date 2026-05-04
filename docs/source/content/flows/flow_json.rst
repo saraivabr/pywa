@@ -1,7 +1,7 @@
 Flow JSON
 =========
 
-Here you will find all the components that make up a Flow JSON object.
+Aqui você encontrará todos os componentes que compõem um objeto Flow JSON.
 
 .. currentmodule:: pywa.types.flows
 

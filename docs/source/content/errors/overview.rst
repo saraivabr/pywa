@@ -3,18 +3,18 @@
 
 .. currentmodule:: pywa.errors
 
-Exceptions in ``pywa`` are a key mechanism for letting you know **what went wrong and why**.
-They appear in two main ways:
+Exceções em ``pywa`` são um mecanismo fundamental para informar **o que deu errado e por quê**.
+Elas aparecem de duas formas principais:
 
-1. **Raised exceptions** — when something fails immediately (e.g., invalid parameters).
-2. **Returned errors** — when the API reports an error asynchronously via a message status update.
+1. **Exceções lançadas** — quando algo falha imediatamente (por ex., parâmetros inválidos).
+2. **Erros retornados** — quando a API relata um erro de forma assíncrona por meio de uma atualização de status de mensagem.
 
 ------------------------------
 
-Basic Example
--------------
+Exemplo Básico
+--------------
 
-Most exceptions are raised directly when you attempt an invalid action:
+A maioria das exceções é lançada diretamente quando você tenta uma ação inválida:
 
 .. code-block:: python
     :emphasize-lines: 8-9, 11
@@ -34,21 +34,21 @@ Most exceptions are raised directly when you attempt an invalid action:
 
 ------------------------------
 
-Message Status Errors
-----------------------
+Erros de Status de Mensagem
+----------------------------
 
-Some errors are **not raised immediately** but instead appear as part of a :class:`~pywa.types.message_status.MessageStatus` update.
+Alguns erros **não são lançados imediatamente**, mas aparecem como parte de uma atualização :class:`~pywa.types.message_status.MessageStatus`.
 
-For example:
+Por exemplo:
 
-- Sending a non-template message **outside the 24h conversation window** →
+- Enviar uma mensagem não-template **fora da janela de conversa de 24h** →
   :class:`~pywa.errors.ReEngagementMessage`
-- Sending invalid media (wrong file type, too large, invalid URL, etc.) →
+- Enviar mídia inválida (tipo de arquivo incorreto, muito grande, URL inválida, etc.) →
   :class:`~pywa.errors.MediaUploadError`
 
-These errors surface in the **status update** rather than raising an exception directly.
+Esses erros surgem na **atualização de status** em vez de lançar uma exceção diretamente.
 
-That’s why it’s **important to always register a handler** for failed message statuses:
+Por isso é **importante sempre registrar um handler** para status de mensagens com falha:
 
 .. code-block:: python
     :emphasize-lines: 6
@@ -66,10 +66,10 @@ That’s why it’s **important to always register a handler** for failed messag
 
 ------------------------------
 
-Handling Specific Errors
--------------------------
+Tratando Erros Específicos
+--------------------------
 
-You can also filter and handle specific error types:
+Você também pode filtrar e tratar tipos específicos de erros:
 
 .. code-block:: python
     :linenos:
@@ -114,10 +114,10 @@ You can also filter and handle specific error types:
 
 ------------------------------
 
-Incoming Errors (Unsupported Messages)
----------------------------------------
+Erros Recebidos (Mensagens Não Suportadas)
+------------------------------------------
 
-If a user sends an unsupported message type (e.g., poll), you’ll receive a :class:`~pywa.types.Message` with type :class:`~pywa.types.MessageType.UNSUPPORTED` and an error of :class:`~UnsupportedMessageType`.
+Se um usuário enviar um tipo de mensagem não suportado (por ex., enquete), você receberá uma :class:`~pywa.types.Message` com tipo :class:`~pywa.types.MessageType.UNSUPPORTED` e um erro de :class:`~UnsupportedMessageType`.
 
 .. code-block:: python
     :emphasize-lines: 5
@@ -132,10 +132,10 @@ If a user sends an unsupported message type (e.g., poll), you’ll receive a :cl
 
 ------------------------------
 
-Catching All Exceptions
-------------------------
+Capturando Todas as Exceções
+-----------------------------
 
-Since all exceptions inherit from :class:`~WhatsAppError`, you can catch everything with one block:
+Como todas as exceções herdam de :class:`~WhatsAppError`, você pode capturar tudo com um único bloco:
 
 .. code-block:: python
     :linenos:
@@ -152,18 +152,18 @@ Since all exceptions inherit from :class:`~WhatsAppError`, you can catch everyth
 
 ------------------------------
 
-Base Exception
---------------
+Exceção Base
+-------------
 
 .. autoclass:: WhatsAppError()
     :show-inheritance:
 
 ------------------------------
 
-Categories of Exceptions
--------------------------
+Categorias de Exceções
+-----------------------
 
-All exceptions fall into one of these categories:
+Todas as exceções se enquadram em uma destas categorias:
 
 .. toctree::
 

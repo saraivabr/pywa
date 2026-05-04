@@ -1,5 +1,5 @@
-Call Status
-===========
+Status da Chamada
+=================
 
 .. currentmodule:: pywa.types.calls
 

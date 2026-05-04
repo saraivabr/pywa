@@ -1,5 +1,5 @@
-Client Reference
-================
+Referência do Cliente
+=====================
 
 .. currentmodule:: pywa.client
 

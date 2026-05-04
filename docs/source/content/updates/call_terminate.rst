@@ -1,5 +1,5 @@
-Call Terminate
-==============
+Encerramento de Chamada
+=======================
 
 .. currentmodule:: pywa.types.calls
 

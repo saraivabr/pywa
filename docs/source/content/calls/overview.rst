@@ -1,15 +1,15 @@
 📞 Calls
 =========
 
-The WhatsApp Business Calling API enables you to initiate and receive calls with users on WhatsApp using voice-over-internet protocol (VoIP).
+A API de Chamadas do WhatsApp Business permite iniciar e receber chamadas com usuários no WhatsApp usando o protocolo de voz sobre internet (VoIP).
 
-It provides a way to manage call permissions, initiate calls, and handle call events such as connection, termination, and status updates.
+Ela fornece uma forma de gerenciar permissões de chamadas, iniciar chamadas e lidar com eventos de chamadas, como conexão, encerramento e atualizações de status.
 
 .. note::
 
-    WORK IN PROGRESS: Pywa support for WhatsApp calls is still under development. The API is fully implemented and tested, but no actual calls have been made yet.
+    TRABALHO EM ANDAMENTO: O suporte do PyWa a chamadas do WhatsApp ainda está em desenvolvimento. A API está totalmente implementada e testada, mas nenhuma chamada real foi realizada ainda.
 
-    For full documentation of the Cloud API Calling, see the official documentation: https://developers.facebook.com/docs/whatsapp/cloud-api/calling
+    Para a documentação completa da Cloud API Calling, consulte a documentação oficial: https://developers.facebook.com/docs/whatsapp/cloud-api/calling
 
 .. toctree::
     types

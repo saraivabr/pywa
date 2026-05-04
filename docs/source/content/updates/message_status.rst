@@ -1,5 +1,5 @@
-Message Status
-==============
+Status da Mensagem
+==================
 
 .. currentmodule:: pywa.types.message_status
 

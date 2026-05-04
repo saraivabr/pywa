@@ -1,5 +1,5 @@
-Callback Button
-====================
+Botão de Callback
+=================
 
 .. currentmodule:: pywa.types
 

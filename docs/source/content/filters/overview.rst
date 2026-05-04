@@ -3,12 +3,12 @@
 
 .. currentmodule:: pywa.filters
 
-Filters are used by handlers to decide whether an update should be handled or ignored.
+Filtros são usados pelos handlers para decidir se uma atualização deve ser processada ou ignorada.
 
-The library provides several built-in filters, available in the :mod:`pywa.filters` module.
+A biblioteca fornece vários filtros embutidos, disponíveis no módulo :mod:`pywa.filters`.
 
 -----------------
-Basic Usage
+Uso Básico
 -----------------
 
 .. code-block:: python
@@ -31,10 +31,10 @@ Basic Usage
         clb.reply("You clicked me!")
 
 -----------------
-Combining Filters
+Combinando Filtros
 -----------------
 
-Filters can be combined with logical operators:
+Filtros podem ser combinados com operadores lógicos:
 
 - ``&`` → **and**
 - ``|`` → **or**
@@ -55,33 +55,33 @@ Filters can be combined with logical operators:
 
 .. tip::
 
-   All match-filters (:meth:`matches`, :meth:`contains` etc.) return ``True`` if **any** of the given options match.
-   So instead of writing:
+   Todos os filtros de correspondência (:meth:`matches`, :meth:`contains` etc.) retornam ``True`` se **qualquer** uma das opções fornecidas corresponder.
+   Então, em vez de escrever:
 
    .. code-block:: python
 
         filters.matches("hello") | filters.matches("hi")
 
-   You can simply write:
+   Você pode simplesmente escrever:
 
    .. code-block:: python
 
         filters.matches("hello", "hi")
 
 -----------------
-Custom Filters
+Filtros Personalizados
 -----------------
 
-You can define your own filters by writing a function that takes the client and the update, and returns a boolean.
+Você pode definir seus próprios filtros escrevendo uma função que recebe o cliente e a atualização e retorna um booleano.
 
-If the function returns ``True`` → the handler will process the update.
-If it returns ``False`` → the update will be ignored.
+Se a função retornar ``True`` → o handler processará a atualização.
+Se retornar ``False`` → a atualização será ignorada.
 
 .. note::
 
-   - Custom filters must be wrapped with :func:`pywa.filters.new`.
-   - You can combine custom and built-in filters using logical operators.
-   - Async functions can be used as filters **only** with the async client.
+   - Filtros personalizados devem ser encapsulados com :func:`pywa.filters.new`.
+   - Você pode combinar filtros personalizados e embutidos usando operadores lógicos.
+   - Funções assíncronas podem ser usadas como filtros **somente** com o cliente assíncrono.
 
 .. code-block:: python
     :emphasize-lines: 3-4, 8, 13
@@ -103,7 +103,7 @@ If it returns ``False`` → the update will be ignored.
         msg.reply("You said something without xyz!")
 
 -----------------
-Built-in Filters
+Filtros Embutidos
 -----------------
 
 .. toctree::

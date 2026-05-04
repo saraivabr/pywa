@@ -1,5 +1,5 @@
-Template Category Update
-========================
+Atualização de Categoria de Template
+=====================================
 
 .. currentmodule:: pywa.types
 

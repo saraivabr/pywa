@@ -1,4 +1,4 @@
-Common filters
+Filtros Comuns
 ==============
 
 .. currentmodule:: pywa.filters

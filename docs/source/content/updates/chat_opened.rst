@@ -1,9 +1,9 @@
-Chat Opened
+Chat Aberto
 ===========
 
 .. currentmodule:: pywa.types
 
-The :class:`ChatOpened` type is used to indicate that a user has opened a chat with the bot.
+O tipo :class:`ChatOpened` é usado para indicar que um usuário abriu um chat com o bot.
 
 
 .. autoclass:: ChatOpened()

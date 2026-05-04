@@ -3,58 +3,58 @@
 
 .. currentmodule:: pywa.handlers
 
-To process updates from WhatsApp, your application needs to receive **incoming webhooks**.
-This is done by running a web server that listens for requests from WhatsApp and passes them to your handlers.
+Para processar atualizações do WhatsApp, sua aplicação precisa receber **webhooks recebidos**.
+Isso é feito executando um servidor web que ouve as requisições do WhatsApp e as passa para seus handlers.
 
-**Why pywa Doesn’t Start the Server?**
+**Por que o pywa Não Inicia o Servidor?**
 
-``pywa`` is designed for **maximum flexibility** — it does not run the server for you.
-Instead, it only registers the route that will handle incoming updates.
+O ``pywa`` foi projetado para **máxima flexibilidade** — ele não executa o servidor por você.
+Em vez disso, ele apenas registra a rota que irá tratar as atualizações recebidas.
 
-This means you can:
+Isso significa que você pode:
 
-- Use any web framework you like.
-- Configure your server however you want.
-- Serve other parts of your app alongside ``pywa`` without restrictions.
+- Usar qualquer framework web que preferir.
+- Configurar seu servidor da forma que quiser.
+- Servir outras partes da sua aplicação junto com o ``pywa`` sem restrições.
 
 .. note::
 
-    Pywa has built-in support for FastAPI and Flask, but you can use any framework that supports handling HTTP requests.
+    O Pywa tem suporte integrado para FastAPI e Flask, mas você pode usar qualquer framework que suporte o tratamento de requisições HTTP.
 
-Setting Up a Callback URL
--------------------------
-For WhatsApp to send updates to your server, you must provide a **callback URL** — a public, secure (``HTTPS``) endpoint that points to your running server.
+Configurar uma URL de Callback
+------------------------------
+Para que o WhatsApp envie atualizações para o seu servidor, você deve fornecer uma **URL de callback** — um endpoint público e seguro (``HTTPS``) que aponta para o seu servidor em execução.
 
-If you’re developing locally, you can use tunneling services like:
+Se você está desenvolvendo localmente, pode usar serviços de tunelamento como:
 
 - `ngrok <https://ngrok.com/>`_
 - `Cloudflare Tunnel <https://developers.cloudflare.com/pages/how-to/preview-with-cloudflare-tunnel/>`_
 - `localtunnel <https://localtunnel.github.io/www/>`_
 
-These create a secure, public URL that forwards traffic to your local machine.
+Eles criam uma URL pública e segura que encaminha o tráfego para sua máquina local.
 
-Example using ngrok:
+Exemplo usando ngrok:
 
 .. code-block:: bash
     :caption: Terminal
 
     ngrok http 8080
 
-Once you have a public URL, you must **register it** with WhatsApp — either automatically (via pywa) or manually (via the WhatsApp App Dashboard).
+Assim que tiver uma URL pública, você deve **registrá-la** no WhatsApp — automaticamente (via pywa) ou manualmente (via o Painel do Aplicativo WhatsApp).
 
-Option 1: Automatic Callback URL Registration
----------------------------------------------
-This is the simplest method — ``pywa`` will:
+Opção 1: Registro Automático de URL de Callback
+-----------------------------------------------
+Este é o método mais simples — o ``pywa`` irá:
 
-- Register your callback URL with WhatsApp.
-- Handle the verification request for you.
+- Registrar sua URL de callback no WhatsApp.
+- Tratar a requisição de verificação para você.
 
-**Requirements:**
+**Requisitos:**
 
-- Your WhatsApp App **ID** and **Secret** (unless you’re setting callback_url_scope to ``PHONE`` or ``WABA``).
-  See `Facebook docs <https://developers.facebook.com/docs/development/create-an-app/app-dashboard/basic-settings/>`_ for how to get them.
+- O **ID** e o **Secret** do seu Aplicativo WhatsApp (a menos que você esteja definindo callback_url_scope para ``PHONE`` ou ``WABA``).
+  Consulte a `documentação do Facebook <https://developers.facebook.com/docs/development/create-an-app/app-dashboard/basic-settings/>`_ para saber como obtê-los.
 
-Example using FastAPI:
+Exemplo usando FastAPI:
 
 .. code-block:: python
     :caption: main.py
@@ -78,7 +78,7 @@ Example using FastAPI:
 
     # Register your handlers here
 
-Run the server:
+Execute o servidor:
 
 .. code-block:: bash
     :caption: Terminal
@@ -87,25 +87,25 @@ Run the server:
 
 .. note::
 
-    The port must match the one you expose via your tunnel.
-    Example: ``ngrok http 8080`` means your server should run on port 8080.
+    A porta deve corresponder à que você expõe via seu túnel.
+    Exemplo: ``ngrok http 8080`` significa que seu servidor deve rodar na porta 8080.
 
-Option 2: Manual Callback URL Registration
-------------------------------------------
-If you prefer to register the callback URL yourself:
+Opção 2: Registro Manual de URL de Callback
+-------------------------------------------
+Se você preferir registrar a URL de callback você mesmo:
 
-1. Start your server so ``pywa`` can handle WhatsApp’s verification request.
-2. Go to **App Dashboard > WhatsApp > Configuration**.
+1. Inicie seu servidor para que o ``pywa`` possa tratar a requisição de verificação do WhatsApp.
+2. Acesse **App Dashboard > WhatsApp > Configuration**.
 
 .. image:: ../../../../_static/guides/register-callback-url.webp
     :alt: Register Callback URL
 
-3. Enter:
+3. Informe:
 
-   - Your server’s public URL (e.g., ``https://subdomain.ngrok.io``).
-   - The ``verify_token`` you used in your ``WhatsApp`` client initialization.
+   - A URL pública do seu servidor (por exemplo, ``https://subdomain.ngrok.io``).
+   - O ``verify_token`` que você usou na inicialização do seu client ``WhatsApp``.
 
-Example using FastAPI:
+Exemplo usando FastAPI:
 
 .. code-block:: python
     :caption: main.py
@@ -126,50 +126,50 @@ Example using FastAPI:
 
     # Register your handlers here
 
-Run the server:
+Execute o servidor:
 
 .. code-block:: bash
     :caption: Terminal
 
     fastapi dev main.py --port 8080
 
-Subscribing to Webhook Fields
------------------------------
-When registering manually, you must also subscribe to webhook fields in your app settings.
+Assinar Campos de Webhook
+--------------------------
+Ao registrar manualmente, você também deve assinar os campos de webhook nas configurações do seu aplicativo.
 
-Go to **App Dashboard > WhatsApp > Configuration** and scroll down to the **Webhook Fields** section.
+Acesse **App Dashboard > WhatsApp > Configuration** e role para baixo até a seção **Webhook Fields**.
 
 .. image:: ../../../../_static/guides/subscribe-webhook-fields.webp
     :alt: Subscribe to Webhook Fields
 
-Supported by pywa:
+Suportados pelo pywa:
 
-- ``messages`` – all user-related updates (messages, callbacks, message statuses)
-- ``calls`` – call connect, terminate, and status updates
-- ``message_template_status_update`` – template approval/rejection changes
-- ``message_template_quality_update`` – template quality score changes
-- ``message_template_components_update`` – template component changes (header, body, footer, buttons)
-- ``template_category_update`` – template category changes
-- ``user_preferences`` – user marketing preferences
+- ``messages`` – todas as atualizações relacionadas ao usuário (mensagens, callbacks, status de mensagens)
+- ``calls`` – atualizações de conexão, encerramento e status de chamadas
+- ``message_template_status_update`` – mudanças de aprovação/rejeição de template
+- ``message_template_quality_update`` – mudanças na pontuação de qualidade do template
+- ``message_template_components_update`` – mudanças nos componentes do template (cabeçalho, corpo, rodapé, botões)
+- ``template_category_update`` – mudanças de categoria do template
+- ``user_preferences`` – preferências de marketing do usuário
 
-You can also subscribe to other fields, but they won’t be processed automatically — use :meth:`~pywa.client.WhatsApp.on_raw_update` to handle them.
+Você também pode assinar outros campos, mas eles não serão processados automaticamente — use :meth:`~pywa.client.WhatsApp.on_raw_update` para tratá-los.
 
-Once everything is set up correctly, WhatsApp will start sending updates to your webhook URL.
+Assim que tudo estiver configurado corretamente, o WhatsApp começará a enviar atualizações para a sua URL de webhook.
 
 --------------------------
 
-Registering Callback Functions
+Registrar Funções de Callback
 ------------------------------
 
-To handle incoming updates, you must **register callback functions**.
-These functions are called whenever WhatsApp sends an update.
+Para tratar atualizações recebidas, você deve **registrar funções de callback**.
+Essas funções são chamadas sempre que o WhatsApp envia uma atualização.
 
-A callback function must accept two arguments:
+Uma função de callback deve aceitar dois argumentos:
 
-- The WhatsApp client object (:class:`~pywa.client.WhatsApp`)
-- The update object (:class:`~pywa.types.Message`, :class:`~pywa.types.CallbackButton`, etc.)
+- O objeto client do WhatsApp (:class:`~pywa.client.WhatsApp`)
+- O objeto de atualização (:class:`~pywa.types.Message`, :class:`~pywa.types.CallbackButton`, etc.)
 
-**Example:**
+**Exemplo:**
 
 .. code-block:: python
     :emphasize-lines: 3, 6
@@ -182,14 +182,14 @@ A callback function must accept two arguments:
     def react_to_button(client: WhatsApp, clb: types.CallbackButton):
         clb.react("❤️")
 
-Once defined, you can register callbacks in two main ways:
+Uma vez definidas, você pode registrar callbacks de duas formas principais:
 
 
 
-Using decorators
-^^^^^^^^^^^^^^^^
+Usando decoradores
+^^^^^^^^^^^^^^^^^^
 
-The simplest approach is with the ``on_...`` decorators such as :meth:`~pywa.client.WhatsApp.on_message`, :meth:`~pywa.client.WhatsApp.on_callback_button` etc.
+A abordagem mais simples é com os decoradores ``on_...`` como :meth:`~pywa.client.WhatsApp.on_message`, :meth:`~pywa.client.WhatsApp.on_callback_button` etc.
 
 .. code-block:: python
     :caption: main.py
@@ -217,9 +217,9 @@ The simplest approach is with the ``on_...`` decorators such as :meth:`~pywa.cli
 
 .. tip::
 
-    If you don’t have access to the client instance (e.g., in a module where you define handlers), you can register handlers **directly on the WhatsApp class**.
+    Se você não tem acesso à instância do client (por exemplo, em um módulo onde você define handlers), pode registrar handlers **diretamente na classe WhatsApp**.
 
-    Example:
+    Exemplo:
 
     .. code-block:: python
         :caption: my_handlers.py
@@ -233,7 +233,7 @@ The simplest approach is with the ``on_...`` decorators such as :meth:`~pywa.cli
         def handle_message(client: WhatsApp, msg: types.Message):
             print(msg)
 
-    Then load the handlers in your main file:
+    Depois carregue os handlers no seu arquivo principal:
 
     .. code-block:: python
         :caption: main.py
@@ -250,12 +250,12 @@ The simplest approach is with the ``on_...`` decorators such as :meth:`~pywa.cli
         wa.load_handlers_modules(my_handlers)
 
 
-Using ``Handler`` objects
+Usando objetos ``Handler``
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For larger projects, or when you need to register handlers dynamically, you can wrap callback functions in ``Handler`` objects and add them via :meth:`~pywa.client.WhatsApp.add_handlers`.
+Para projetos maiores, ou quando precisa registrar handlers dinamicamente, você pode encapsular funções de callback em objetos ``Handler`` e adicioná-los via :meth:`~pywa.client.WhatsApp.add_handlers`.
 
-**Example:**
+**Exemplo:**
 
 .. code-block:: python
     :caption: my_handlers.py
@@ -292,16 +292,16 @@ For larger projects, or when you need to register handlers dynamically, you can 
     fastapi dev main.py
 
 
-Available Handlers
--------------------
+Handlers Disponíveis
+--------------------
 
 .. list-table::
    :widths: 20 20 60
    :header-rows: 1
 
-   * - Decorator
+   * - Decorador
      - Handler
-     - Update type
+     - Tipo de atualização
    * - :meth:`~pywa.client.WhatsApp.on_message`
      - :class:`MessageHandler`
      - :class:`~pywa.types.message.Message`
@@ -362,11 +362,11 @@ Available Handlers
 
 
 
-Filtering updates
------------------
+Filtrar atualizações
+---------------------
 
-You can filter incoming updates by passing filters to your handlers.
-This is useful when you only want to react to specific types of messages.
+Você pode filtrar as atualizações recebidas passando filtros para seus handlers.
+Isso é útil quando você só quer reagir a tipos específicos de mensagens.
 
 .. code-block:: python
     :caption: main.py
@@ -383,16 +383,16 @@ This is useful when you only want to react to specific types of messages.
 
 .. tip::
 
-    Explore the :mod:`~pywa.filters` module for built-in filters,
-    or create your own. See more in the `filters guide <../filters/overview.html>`_.
+    Explore o módulo :mod:`~pywa.filters` para filtros embutidos,
+    ou crie os seus próprios. Veja mais no `guia de filtros <../filters/overview.html>`_.
 
 
-Using listeners instead of handlers
+Usando listeners em vez de handlers
 ------------------------------------
 
-Handlers are best for **entry points** in your app (e.g., commands or button clicks).
-When you need to collect additional input from the user (like their age or address),
-you can use **listeners** instead of registering a new handler at runtime.
+Handlers são melhores para **pontos de entrada** no seu aplicativo (por exemplo, comandos ou cliques em botões).
+Quando você precisar coletar entrada adicional do usuário (como idade ou endereço),
+você pode usar **listeners** em vez de registrar um novo handler em tempo de execução.
 
 .. code-block:: python
     :caption: main.py
@@ -410,13 +410,13 @@ you can use **listeners** instead of registering a new handler at runtime.
 
 .. note::
 
-    Read more about listeners in the `listeners guide <../listeners/overview.html>`_.
+    Leia mais sobre listeners no `guia de listeners <../listeners/overview.html>`_.
 
 
-Controlling handler flow
--------------------------
+Controlar o fluxo de handlers
+------------------------------
 
-By default, once a handler processes an update, no other handlers are called.
+Por padrão, assim que um handler processa uma atualização, nenhum outro handler é chamado.
 
 .. code-block:: python
     :caption: main.py
@@ -438,8 +438,8 @@ By default, once a handler processes an update, no other handlers are called.
 
 .. tip::
 
-    Handlers run in the order they’re registered, unless you set a ``priority``.
-    A higher ``priority`` value means the handler runs earlier.
+    Os handlers são executados na ordem em que foram registrados, a menos que você defina uma ``priority``.
+    Um valor mais alto de ``priority`` significa que o handler é executado antes.
 
     .. code-block:: python
         :caption: main.py
@@ -458,7 +458,7 @@ By default, once a handler processes an update, no other handlers are called.
         def second(client: WhatsApp, msg: types.Message):
             print("Second:", msg)
 
-You can change the default behavior by enabling ``continue_handling`` when creating the client:
+Você pode alterar o comportamento padrão habilitando ``continue_handling`` ao criar o client:
 
 .. code-block:: python
     :caption: main.py
@@ -472,8 +472,8 @@ You can change the default behavior by enabling ``continue_handling`` when creat
         print(msg)
         # The next handler WILL also run
 
-You can also decide per-message inside a handler by using
-:meth:`~pywa.types.base_update.BaseUpdate.stop_handling` or
+Você também pode decidir por mensagem dentro de um handler usando
+:meth:`~pywa.types.base_update.BaseUpdate.stop_handling` ou
 :meth:`~pywa.types.base_update.BaseUpdate.continue_handling`:
 
 .. code-block:: python
@@ -494,14 +494,14 @@ You can also decide per-message inside a handler by using
             msg.continue_handling()   # Allow further handlers
 
 
-Validating updates
-------------------
+Validar atualizações
+--------------------
 
-WhatsApp `recommends <https://developers.facebook.com/docs/graph-api/webhooks/getting-started#event-notifications>`_
-validating updates using the ``X-Hub-Signature-256`` header.
-This ensures the update was really sent by WhatsApp.
+O WhatsApp `recomenda <https://developers.facebook.com/docs/graph-api/webhooks/getting-started#event-notifications>`_
+validar atualizações usando o cabeçalho ``X-Hub-Signature-256``.
+Isso garante que a atualização foi realmente enviada pelo WhatsApp.
 
-To enable validation, pass your ``app_secret`` when creating the client:
+Para habilitar a validação, passe seu ``app_secret`` ao criar o client:
 
 .. code-block:: python
     :caption: main.py
@@ -516,10 +516,10 @@ To enable validation, pass your ``app_secret`` when creating the client:
         ...
     )
 
-If the signature is invalid, pywa automatically responds with
+Se a assinatura for inválida, o pywa responde automaticamente com
 ``HTTP 401 Unauthorized``.
 
-You can disable validation by setting ``validate_updates=False``.
+Você pode desabilitar a validação definindo ``validate_updates=False``.
 
 .. toctree::
     handler_decorators

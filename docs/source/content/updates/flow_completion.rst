@@ -1,9 +1,9 @@
-Flow Completion
-===============
+Conclusão de Flow
+=================
 
 .. currentmodule:: pywa.types
 
-The :class:`FlowCompletion` class represents an update that arrives when user completes a flow.
+A classe :class:`FlowCompletion` representa uma atualização que chega quando o usuário conclui um flow.
 
 
 .. autoclass:: FlowCompletion()

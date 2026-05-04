@@ -1,5 +1,5 @@
-Rate Limit Errors
-=================
+Erros de Limite de Taxa
+=======================
 
 .. currentmodule:: pywa.errors
 

@@ -1,30 +1,30 @@
-⚙️ Get Started
-===============
+⚙️ Primeiros Passos
+===================
 
-⬇️ Installation
----------------
+⬇️ Instalação
+--------------
 
-- **Install using pip:**
+- **Instalar usando pip:**
 
 .. code-block:: bash
 
     pip3 install -U pywa
 
-- **Install from source (bleeding edge):**
+- **Instalar da fonte (versão mais recente):**
 
 .. code-block:: bash
 
     git clone https://github.com/david-lev/pywa.git
     cd pywa && pip3 install -U .
 
-- **For webhook features (FastAPI or Flask):**
+- **Para recursos de webhook (FastAPI ou Flask):**
 
 .. code-block:: bash
 
     pip3 install -U "pywa[fastapi]"
     pip3 install -U "pywa[flask]"
 
-- **For Flow features with default encryption/decryption:**
+- **Para recursos de Flow com criptografia/descriptografia padrão:**
 
 .. code-block:: bash
 
@@ -32,18 +32,18 @@
 
 ================================
 
-Create a WhatsApp Application
+Criar um Aplicativo WhatsApp
 -----------------------------
 
-You already have an app? Skip to `Setup the App <#id1>`_.
+Já tem um aplicativo? Pule para `Configurar o Aplicativo <#id1>`_.
 
-To use the WhatsApp Cloud API, you need a Facebook App.
-If you don't have a Facebook Developer account, `register here <https://developers.facebook.com/>`_.
+Para usar a WhatsApp Cloud API, você precisa de um Aplicativo do Facebook.
+Se você não tem uma conta de desenvolvedor do Facebook, `registre-se aqui <https://developers.facebook.com/>`_.
 
-1. Go to `Meta for Developers > My Apps <https://developers.facebook.com/apps/>`_ and create a new app.
-   - Or click `here <https://developers.facebook.com/apps/create/?show_additional_prod_app_info=false>`_ to go directly to the app creation page.
+1. Acesse `Meta for Developers > My Apps <https://developers.facebook.com/apps/>`_ e crie um novo aplicativo.
+   - Ou clique `aqui <https://developers.facebook.com/apps/create/?show_additional_prod_app_info=false>`_ para ir diretamente à página de criação do aplicativo.
 
-2. Select **Business** as the app type and click **Next**.
+2. Selecione **Business** como o tipo de aplicativo e clique em **Next**.
 
 .. toggle::
 
@@ -52,7 +52,7 @@ If you don't have a Facebook Developer account, `register here <https://develope
        :alt: Select app type
        :align: center
 
-4. Fill in the app name and email, then click **Create App**.
+4. Preencha o nome do aplicativo e o e-mail, depois clique em **Create App**.
 
 .. toggle::
 
@@ -61,7 +61,7 @@ If you don't have a Facebook Developer account, `register here <https://develope
        :alt: Fill app details
        :align: center
 
-5. In **Add products to your app**, search for **WhatsApp** and click **Set Up**.
+5. Em **Add products to your app**, pesquise por **WhatsApp** e clique em **Set Up**.
 
 .. toggle::
 
@@ -70,8 +70,8 @@ If you don't have a Facebook Developer account, `register here <https://develope
        :alt: Setup WhatsApp product
        :align: center
 
-6. Select a **Meta Business Account**, accept the terms, and click **Submit**.
-   If you don't have a Business Account, you will need to create one.
+6. Selecione uma **Meta Business Account**, aceite os termos e clique em **Submit**.
+   Se você não tem uma Business Account, será necessário criar uma.
 
 .. toggle::
 
@@ -82,12 +82,12 @@ If you don't have a Facebook Developer account, `register here <https://develope
 
 --------------------
 
-Setup the App
--------------
+Configurar o Aplicativo
+-----------------------
 
-You already have your **Phone ID** and **Token**? Skip to `Send a Message <#id2>`_.
+Já tem seu **Phone ID** e **Token**? Pule para `Enviar uma Mensagem <#id2>`_.
 
-7. In the left menu (under **Products**), expand **WhatsApp** and click **API Setup**.
+7. No menu à esquerda (em **Products**), expanda **WhatsApp** e clique em **API Setup**.
 
 .. toggle::
 
@@ -96,11 +96,11 @@ You already have your **Phone ID** and **Token**? Skip to `Send a Message <#id2>
        :alt: API setup
        :align: center
 
-- Copy the **Temporary access token** (valid for 24h) and the **Phone number ID**.
+- Copie o **Temporary access token** (válido por 24h) e o **Phone number ID**.
 
 .. note::
 
-    Learn `how to create a permanent token <https://developers.facebook.com/docs/whatsapp/business-management-api/get-started>`_.
+    Saiba `como criar um token permanente <https://developers.facebook.com/docs/whatsapp/business-management-api/get-started>`_.
 
 .. attention::
 
@@ -116,10 +116,10 @@ You already have your **Phone ID** and **Token**? Skip to `Send a Message <#id2>
 
 --------------------
 
-Send a Message
---------------
+Enviar uma Mensagem
+-------------------
 
-Now you have your ``phone_id`` and ``token``. You can send messages:
+Agora você tem seu ``phone_id`` e ``token``. Você pode enviar mensagens:
 
 .. code-block:: python
 
@@ -144,24 +144,24 @@ Now you have your ``phone_id`` and ``token``. You can send messages:
 
 .. note::
 
-    - The ``to`` parameter must include country code, e.g., ``+972123456789`` or ``16315551234``.
-      Read more about `phone number formats here <https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages#phone-number-formats>`_.
-    - For **Test Numbers**, add recipients to the allowed numbers list.
-    - Free-form messages can only be received if the recipient messaged your number in the last 24h.
-      See `WhatsApp policy <https://business.whatsapp.com/policy>`_.
+    - O parâmetro ``to`` deve incluir o código do país, por exemplo, ``+972123456789`` ou ``16315551234``.
+      Leia mais sobre `formatos de número de telefone aqui <https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages#phone-number-formats>`_.
+    - Para **Números de Teste**, adicione os destinatários à lista de números permitidos.
+    - Mensagens de forma livre só podem ser recebidas se o destinatário enviou mensagem para o seu número nas últimas 24h.
+      Veja a `política do WhatsApp <https://business.whatsapp.com/policy>`_.
 
 --------------------
 
-Quick Start
------------
+Início Rápido
+-------------
 
-Here’s a quick overview of the ``pywa`` package:
+Aqui está uma visão geral rápida do pacote ``pywa``:
 
-- `WhatsApp <client/overview.html>`_: Core client to send/receive messages, manage profile/business settings, and register callbacks.
-- `Handlers <handlers/overview.html>`_: Register callbacks to handle incoming updates (messages, callbacks, and more).
-- `Listeners <listeners/overview.html>`_: Listen for incoming user updates.
-- `Filters <filters/overview.html>`_: Filter and handle specific updates, e.g., text messages containing “Hello”.
-- `Updates <updates/overview.html>`_: Explore different update types, their attributes, and usage.
-- `Flows <flows/overview.html>`_: Create, update, and send flows.
-- `Errors <errors/overview.html>`_: Learn about package errors and how to handle them.
-- `Examples <examples/overview.html>`_: See practical usage examples.
+- `WhatsApp <client/overview.html>`_: Client principal para enviar/receber mensagens, gerenciar configurações de perfil/negócio e registrar callbacks.
+- `Handlers <handlers/overview.html>`_: Registre callbacks para lidar com atualizações recebidas (mensagens, callbacks e muito mais).
+- `Listeners <listeners/overview.html>`_: Ouça atualizações de usuários recebidas.
+- `Filters <filters/overview.html>`_: Filtre e trate atualizações específicas, por exemplo, mensagens de texto contendo “Hello”.
+- `Updates <updates/overview.html>`_: Explore diferentes tipos de atualização, seus atributos e uso.
+- `Flows <flows/overview.html>`_: Crie, atualize e envie flows.
+- `Errors <errors/overview.html>`_: Aprenda sobre os erros do pacote e como tratá-los.
+- `Examples <examples/overview.html>`_: Veja exemplos práticos de uso.

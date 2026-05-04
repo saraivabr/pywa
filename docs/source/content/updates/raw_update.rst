@@ -1,5 +1,5 @@
-Raw Update
-===========
+Atualização Bruta
+=================
 
 .. currentmodule:: pywa.types.base_update
 

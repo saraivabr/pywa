@@ -1,5 +1,5 @@
-Flow Types
-==========
+Tipos de Flow
+=============
 
 .. currentmodule:: pywa.types.flows
 

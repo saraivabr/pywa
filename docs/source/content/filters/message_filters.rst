@@ -1,5 +1,5 @@
-Message Filters
-===============
+Filtros de Mensagem
+===================
 
 .. automodule:: pywa.filters
 

@@ -1,5 +1,5 @@
-Calling Errors
-===============
+Erros de Chamadas
+=================
 
 .. currentmodule:: pywa.errors
 

@@ -6,11 +6,11 @@
 </p>
 
 <p align="center">
-  <strong>🚀 Build WhatsApp Bots in Python • Fast. Effortless. Powerful.</strong>
+  <strong>🚀 Crie Bots para WhatsApp em Python • Rápido. Sem Esforço. Poderoso.</strong>
 </p>
 
 <p align="center">
-  <small><em>🤖 Hey there! I am using PyWa.</em></small>
+  <small><em>🤖 Olá! Estou usando o PyWa.</em></small>
 </p>
 
 
@@ -26,33 +26,33 @@
 
 ---
 
-**💫 PyWa is an all-in-one Python framework for the WhatsApp Cloud API.**
+**💫 PyWa é um framework Python completo para a WhatsApp Cloud API.**
 
-Send **rich media messages**, use **interactive buttons**, listen to **real-time events**, build and send **flows**, design and send **template messages**, and enjoy **blazing-fast async support** with full integration for **FastAPI, Flask**, and more.
-Fully **typed**, **documented**, and **production-ready** — build powerful bots in minutes.
+Envie **mensagens com mídia rica**, use **botões interativos**, ouça **eventos em tempo real**, crie e envie **flows**, projete e envie **mensagens de template**, e aproveite **suporte assíncrono ultrarrápido** com integração completa para **FastAPI, Flask** e muito mais.
+Totalmente **tipado**, **documentado** e **pronto para produção** — crie bots poderosos em minutos.
 
 ---
 
 > [!IMPORTANT]
-> **Action Required: WhatsApp BSUID Migration**
+> **Ação Necessária: Migração BSUID do WhatsApp**
 >
-> WhatsApp is transitioning to [Business-Scoped User IDs](https://developers.facebook.com/documentation/business-messaging/whatsapp/business-scoped-user-ids) (BSUID). This is a breaking change in how user IDs are handled and will be rolled out by Meta in the near future.
+> O WhatsApp está migrando para [Business-Scoped User IDs](https://developers.facebook.com/documentation/business-messaging/whatsapp/business-scoped-user-ids) (BSUID). Esta é uma mudança que quebra a compatibilidade em como os IDs de usuário são tratados e será implementada pela Meta em breve.
 >
-> pywa `4.0.0` (Beta) includes full support for BSUID and is required to ensure compatibility once the change takes effect.
+> pywa `4.0.0` (Beta) inclui suporte completo para BSUID e é necessário para garantir compatibilidade quando a mudança entrar em vigor.
 >
-> * **Install Beta:** `pip install -U pywa --pre`
-> * **Migration Guide:** https://pywa.readthedocs.io/en/dev/content/migration.html#migration-from-3-x-to-4-x
-> * **Issues:** Please report any BSUID-related bugs: https://github.com/david-lev/pywa/issues
+> * **Instalar Beta:** `pip install -U pywa --pre`
+> * **Guia de Migração:** https://pywa.readthedocs.io/en/dev/content/migration.html#migration-from-3-x-to-4-x
+> * **Issues:** Relate quaisquer bugs relacionados ao BSUID: https://github.com/david-lev/pywa/issues
 >
-> We recommend upgrading and testing your integration ahead of the official rollout.
+> Recomendamos atualizar e testar sua integração antes da implementação oficial.
 
 ---
 
 
-📄 **Quick Documentation Index**
+📄 **Índice Rápido da Documentação**
 --------------------------------
 
-> [Get Started](https://pywa.readthedocs.io/en/latest/content/getting-started.html)
+> [Primeiros Passos](https://pywa.readthedocs.io/en/latest/content/getting-started.html)
 • [Client](https://pywa.readthedocs.io/en/latest/content/client/overview.html)
 • [Handlers](https://pywa.readthedocs.io/en/latest/content/handlers/overview.html)
 • [Listeners](https://pywa.readthedocs.io/en/latest/content/listeners/overview.html)
@@ -64,26 +64,26 @@ Fully **typed**, **documented**, and **production-ready** — build powerful bot
 
 ------------------------
 
-⚡ **Why PyWa?**
+⚡ **Por que o PyWa?**
 ---------------
-- **🚀 Fast & Simple** – Focus on building, not boilerplate.
-- **💬 Rich Messaging** – Text, images, files, audio, locations, contacts, buttons & more.
-- **📩 Real-Time Updates** – Messages, callbacks, delivery/read receipts, account updates, and more.
-- **🔔 Listeners** – Wait for user replies, clicks, or reactions with ease.
-- **📄 Templates** – Create and send powerful WhatsApp templates.
-- **♻️ Flows** – Build interactive WhatsApp flows effortlessly.
-- **📞 Calls Support** – Receive and handle call events.
-- **🔄 Webhook-Ready** – Native support for Flask, FastAPI, and more.
-- **🔬 Filters** – Advanced filtering for incoming updates.
-- **✅ Production-Ready** – Typed, documented, and fully tested.
+- **🚀 Rápido & Simples** – Foque em construir, não em código repetitivo.
+- **💬 Mensagens Ricas** – Texto, imagens, arquivos, áudio, localizações, contatos, botões e muito mais.
+- **📩 Atualizações em Tempo Real** – Mensagens, callbacks, confirmações de entrega/leitura, atualizações de conta e muito mais.
+- **🔔 Listeners** – Aguarde respostas, cliques ou reações do usuário com facilidade.
+- **📄 Templates** – Crie e envie templates poderosos do WhatsApp.
+- **♻️ Flows** – Crie flows interativos do WhatsApp sem esforço.
+- **📞 Suporte a Chamadas** – Receba e trate eventos de chamada.
+- **🔄 Webhook-Ready** – Suporte nativo para Flask, FastAPI e muito mais.
+- **🔬 Filters** – Filtragem avançada para atualizações recebidas.
+- **✅ Pronto para Produção** – Tipado, documentado e completamente testado.
 
 ------------------------
 
-👨‍💻 **How to Use**
+👨‍💻 **Como Usar**
 ------------------
 
-- **Send a message**
-> See [WhatsApp Client](https://pywa.readthedocs.io/en/latest/content/client/overview.html) for all the options.
+- **Enviar uma mensagem**
+> Veja o [WhatsApp Client](https://pywa.readthedocs.io/en/latest/content/client/overview.html) para todas as opções.
 
 ```python
 from pywa import WhatsApp, types
@@ -112,8 +112,8 @@ wa.send_image(
 )
 ```
 
-- **Handle incoming updates** (with [FastAPI](https://fastapi.tiangolo.com/) in this example)
-> See [Handlers](https://pywa.readthedocs.io/en/latest/content/handlers/overview.html) for fully detailed guide.
+- **Lidar com atualizações recebidas** (com [FastAPI](https://fastapi.tiangolo.com/) neste exemplo)
+> Veja os [Handlers](https://pywa.readthedocs.io/en/latest/content/handlers/overview.html) para um guia totalmente detalhado.
 
 ```python
 # wa.py
@@ -156,15 +156,15 @@ def click_me(client: WhatsApp, clb: types.CallbackButton):
     clb.reply_text(f"Hello {clb.from_user.name}, I am a WhatsApp bot built with PyWa!") # Reply to the button click
 ```
 
-- To run the server, use [fastapi-cli](https://fastapi.tiangolo.com/#run-it) (`pip install "fastapi[standard]"`):
+- Para executar o servidor, use [fastapi-cli](https://fastapi.tiangolo.com/#run-it) (`pip install "fastapi[standard]"`):
 
 ```bash
 fastapi dev wa.py  # see uvicorn docs for more options (port, host, etc.)
 ```
 
-- **Async Usage**
+- **Uso Assíncrono**
 
-- PyWa also supports async usage with the same API. This is useful if you want to use async/await in your code. To use the async version, replace **all** the imports from `pywa` to `pywa_async`:
+- O PyWa também suporta uso assíncrono com a mesma API. Isso é útil se você quiser usar async/await no seu código. Para usar a versão assíncrona, substitua **todas** as importações de `pywa` para `pywa_async`:
 
 ```python
 # wa.py
@@ -183,8 +183,8 @@ async def hello(_: WhatsApp, msg: types.Message): # async callback
     await msg.reply("Hello from PyWa Async!")
 ```
 
-- **Create and send template messages**
-> See [Templates](https://pywa.readthedocs.io/en/latest/content/templates/overview.html) for more details and examples.
+- **Criar e enviar mensagens de template**
+> Veja os [Templates](https://pywa.readthedocs.io/en/latest/content/templates/overview.html) para mais detalhes e exemplos.
 
 ```python
 from pywa import WhatsApp
@@ -231,8 +231,8 @@ wa.send_template(
 )
 ```
 
-- **Create and send flows**
-> See [Flows](https://pywa.readthedocs.io/en/latest/content/flows/overview.html) for much more details and examples.
+- **Criar e enviar flows**
+> Veja os [Flows](https://pywa.readthedocs.io/en/latest/content/flows/overview.html) para muito mais detalhes e exemplos.
 
 ```python
 from pywa import WhatsApp, types
@@ -305,58 +305,58 @@ def handle_flow_response(_: WhatsApp, flow: types.FlowCompletion):
     )
 ```
 
-🎛 **Installation**
+🎛 **Instalação**
 --------------------
 
-- **Install using pip3:**
+- **Instalar usando pip3:**
 
 ```bash
 pip3 install -U pywa
 ```
 
-- **Install from source (the bleeding edge):**
+- **Instalar da fonte (a versão mais recente):**
 
 ```bash
 pip3 install -U git+https://github.com/david-lev/pywa.git
 ```
 
-- **If you going to use the webhook features, here is shortcut to install the required dependencies:**
+- **Se você vai usar os recursos de webhook, aqui está um atalho para instalar as dependências necessárias:**
 
 ```bash
 pip3 install -U "pywa[fastapi]"
 pip3 install -U "pywa[flask]"
 ```
 
-- **If you going to use the Flow features and want to use the default FlowRequestDecryptor and the default FlowResponseEncryptor, here is shortcut to install the required dependencies:**
+- **Se você vai usar os recursos de Flow e quiser usar o FlowRequestDecryptor padrão e o FlowResponseEncryptor padrão, aqui está um atalho para instalar as dependências necessárias:**
 
 ```bash
 pip3 install -U "pywa[cryptography]"
 ```
 
-💾 **Requirements**
+💾 **Requisitos**
 --------------------
 
-- Python 3.10 or higher - https://www.python.org
+- Python 3.10 ou superior - https://www.python.org
 
-📖 **Setup and Usage**
+📖 **Configuração e Uso**
 -----------------------
 
-See the [Documentation](https://pywa.readthedocs.io/) for detailed instructions
+Veja a [Documentação](https://pywa.readthedocs.io/) para instruções detalhadas
 
 
-⚖️ **License**
+⚖️ **Licença**
 ---------------
 
-This project is licensed under the MIT License - see the
-[LICENSE](https://github.com/david-lev/pywa/blob/master/LICENSE) file for details
+Este projeto está licenciado sob a Licença MIT - veja o arquivo
+[LICENSE](https://github.com/david-lev/pywa/blob/master/LICENSE) para detalhes
 
 
-🔱 **Contributing**
+🔱 **Contribuindo**
 --------------------
 
-Contributions are welcome! Please see the [Contributing Guide](https://github.com/david-lev/pywa/blob/master/CONTRIBUTING.md) for more information.
+Contribuições são bem-vindas! Consulte o [Guia de Contribuição](https://github.com/david-lev/pywa/blob/master/CONTRIBUTING.md) para mais informações.
 
-🗣 **Community**
+🗣 **Comunidade**
 --------------------
 
-Join the [Telegram Group](https://t.me/pywachat) to discuss, ask questions, and share your projects built with PyWa!
+Junte-se ao [Grupo do Telegram](https://t.me/pywachat) para discutir, fazer perguntas e compartilhar seus projetos construídos com PyWa!

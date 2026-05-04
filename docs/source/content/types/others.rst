@@ -1,4 +1,4 @@
-Others
+Outros
 ======
 
 .. currentmodule:: pywa.types.sent_update

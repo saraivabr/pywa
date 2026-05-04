@@ -1,9 +1,9 @@
-Sending Media Messages
-======================
+Enviando Mensagens de Mídia
+===========================
 
 
-Sending media from URL
-----------------------
+Enviando mídia a partir de URL
+-------------------------------
 
 .. code-block:: python
     :caption: Media message from URL
@@ -20,8 +20,8 @@ Sending media from URL
         image='https://cdn.pixabay.com/photo/2014/10/01/10/44/animal-468228_1280.jpg'
     )
 
-Sending media from local file
------------------------------
+Enviando mídia a partir de arquivo local
+-----------------------------------------
 
 .. code-block:: python
     :caption: Media message from local file
@@ -38,8 +38,8 @@ Sending media from local file
         video='/path/to/video.mp4'
     )
 
-Sending media from file id
---------------------------
+Enviando mídia a partir de ID de arquivo
+-----------------------------------------
 
 .. code-block:: python
     :caption: Media message from file id
@@ -56,8 +56,8 @@ Sending media from file id
         audio=audio_id
     )
 
-Sending media from bytes
-------------------------
+Enviando mídia a partir de bytes
+---------------------------------
 
 .. code-block:: python
     :caption: Media message from bytes

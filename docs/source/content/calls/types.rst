@@ -1,5 +1,5 @@
-Call Types
-==========
+Tipos de Chamada
+================
 
 .. currentmodule:: pywa.types.calls
 

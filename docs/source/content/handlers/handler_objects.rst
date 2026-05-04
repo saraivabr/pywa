@@ -1,4 +1,4 @@
-Handler Objects
+Objetos de Handler
 ===================
 
 .. currentmodule:: pywa.client

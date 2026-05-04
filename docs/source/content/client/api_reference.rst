@@ -1,5 +1,5 @@
-API Reference
-================
+Referência da API
+=================
 
 .. currentmodule:: pywa.api
 

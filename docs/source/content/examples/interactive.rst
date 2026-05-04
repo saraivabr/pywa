@@ -1,22 +1,22 @@
-Sending Interactive Messages
-============================
+Enviando Mensagens Interativas
+===============================
 
 
-Send a message with selection keyboard
---------------------------------------
+Enviar uma mensagem com teclado de seleção
+------------------------------------------
 
-- You can use selection keyboard only with text messages.
-- The maximum number of section rows is 10.
+- Você pode usar o teclado de seleção apenas com mensagens de texto.
+- O número máximo de linhas de seção é 10.
 
-.. sidebar:: 📱 ScreenShots
+.. sidebar:: 📱 Capturas de Tela
 
-    .. tip:: How the message displayed in WhatsApp:
+    .. tip:: Como a mensagem é exibida no WhatsApp:
 
         .. image:: ../../../../_static/examples/selection-message.webp
             :alt: Selection message example
             :width: 90%
 
-    .. tip:: How the keyboard displayed in WhatsApp:
+    .. tip:: Como o teclado é exibido no WhatsApp:
 
         .. image:: ../../../../_static/examples/selection-keyboard.webp
             :alt: Selection keyboard example
@@ -86,14 +86,14 @@ Send a message with selection keyboard
 
 
 
-Send a message with buttons keyboard
-------------------------------------
+Enviar uma mensagem com teclado de botões
+-----------------------------------------
 
-- You can attach up to 3 buttons to a message.
+- Você pode adicionar até 3 botões a uma mensagem.
 
-.. sidebar:: 📱 ScreenShots
+.. sidebar:: 📱 Capturas de Tela
 
-    .. tip:: How the message displayed in WhatsApp:
+    .. tip:: Como a mensagem é exibida no WhatsApp:
 
         .. image:: ../../../../_static/examples/buttons-message.webp
             :alt: Buttons message example
