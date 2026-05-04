@@ -3,24 +3,24 @@
 
 .. currentmodule:: pywa.client
 
-The :class:`~WhatsApp` client is the heart of the **pywa** library.
-It is responsible for managing communication with the WhatsApp Business API.
+O cliente :class:`~WhatsApp` é o coração da biblioteca **pywa**.
+Ele é responsável por gerenciar a comunicação com a WhatsApp Business API.
 
-Its **three main responsibilities** are:
+Suas **três principais responsabilidades** são:
 
-1. **Sending messages** — text, media, location, contacts, etc.
-2. **Listening** — handling incoming messages, events, and statuses.
-3. **Managing resources** — templates, flows, profiles, and other business-related settings.
+1. **Enviar mensagens** — texto, mídia, localização, contatos, etc.
+2. **Ouvir** — tratar mensagens recebidas, eventos e status.
+3. **Gerenciar recursos** — templates, flows, perfis e outras configurações relacionadas ao negócio.
 
 .. tip::
    :class: note
 
-   Pywa provides **two types of clients**:
+   O Pywa oferece **dois tipos de clients**:
 
-   - **Synchronous** (`pywa`)
-   - **Asynchronous** (`pywa_async`)
+   - **Síncrono** (`pywa`)
+   - **Assíncrono** (`pywa_async`)
 
-   Choose the one that best fits your application’s needs.
+   Escolha o que melhor se adapta às necessidades da sua aplicação.
 
    .. code-block:: python
       :emphasize-lines: 1
@@ -42,15 +42,15 @@ Its **three main responsibilities** are:
       async def on_message(_: WhatsApp, msg: types.Message):
           await msg.reply("Hello!")
 
-   For optimal type checking, ensure that **all** your imports come from the same package—either ``pywa`` or ``pywa_async``.
+   Para uma verificação de tipos otimizada, certifique-se de que **todas** as suas importações venham do mesmo pacote — seja ``pywa`` ou ``pywa_async``.
 .. autoclass:: WhatsApp()
    :members: __init__
 
 
-Sending Messages
+Enviar Mensagens
 ----------------
 
-The client allows you to send a wide variety of messages:
+O client permite enviar uma grande variedade de mensagens:
 
 .. list-table::
    :widths: 40 60
@@ -59,47 +59,47 @@ The client allows you to send a wide variety of messages:
    * - Method
      - Description
    * - :meth:`~WhatsApp.send_message`
-     - Send a text message
+     - Enviar uma mensagem de texto
    * - :meth:`~WhatsApp.send_image`
-     - Send an image
+     - Enviar uma imagem
    * - :meth:`~WhatsApp.send_video`
-     - Send a video
+     - Enviar um vídeo
    * - :meth:`~WhatsApp.send_audio`
-     - Send an audio file
+     - Enviar um arquivo de áudio
    * - :meth:`~WhatsApp.send_voice`
-     - Send a voice message
+     - Enviar uma mensagem de voz
    * - :meth:`~WhatsApp.send_document`
-     - Send a document
+     - Enviar um documento
    * - :meth:`~WhatsApp.send_location`
-     - Share a location
+     - Compartilhar uma localização
    * - :meth:`~WhatsApp.request_location`
-     - Request location from a user
+     - Solicitar localização de um usuário
    * - :meth:`~WhatsApp.send_contact`
-     - Send one or multiple contacts
+     - Enviar um ou mais contatos
    * - :meth:`~WhatsApp.send_sticker`
-     - Send a sticker
+     - Enviar um sticker
    * - :meth:`~WhatsApp.send_template`
-     - Send a template message
+     - Enviar uma mensagem de template
    * - :meth:`~WhatsApp.send_catalog`
-     - Send a product catalog
+     - Enviar um catálogo de produtos
    * - :meth:`~WhatsApp.send_product`
-     - Send a single product
+     - Enviar um único produto
    * - :meth:`~WhatsApp.send_products`
-     - Send multiple products
+     - Enviar múltiplos produtos
    * - :meth:`~WhatsApp.send_reaction`
-     - React to a message
+     - Reagir a uma mensagem
    * - :meth:`~WhatsApp.remove_reaction`
-     - Remove a reaction
+     - Remover uma reação
    * - :meth:`~WhatsApp.mark_message_as_read`
-     - Mark a message as read
+     - Marcar uma mensagem como lida
    * - :meth:`~WhatsApp.indicate_typing`
-     - Indicate typing status to the user
+     - Indicar status de digitação ao usuário
 
 
-Handling Updates
-----------------
+Tratar Atualizações
+-------------------
 
-Register event handlers to listen for updates:
+Registre tratadores de eventos para ouvir atualizações:
 
 .. list-table::
    :widths: 40 60
@@ -108,59 +108,59 @@ Register event handlers to listen for updates:
    * - Method
      - Description
    * - :meth:`~WhatsApp.on_message`
-     - Handle incoming messages
+     - Tratar mensagens recebidas
    * - :meth:`~WhatsApp.on_callback_button`
-     - Handle callback button clicks
+     - Tratar cliques em botões de callback
    * - :meth:`~WhatsApp.on_callback_selection`
-     - Handle list or menu selections
+     - Tratar seleções de lista ou menu
    * - :meth:`~WhatsApp.on_message_status`
-     - Track message delivery, read, and failure statuses
+     - Rastrear status de entrega, leitura e falha de mensagens
    * - :meth:`~WhatsApp.on_chat_opened`
-     - Detect when a user opens a chat
+     - Detectar quando um usuário abre um chat
    * - :meth:`~WhatsApp.on_flow_request`
-     - Handle incoming flow requests
+     - Tratar requisições de flow recebidas
    * - :meth:`~WhatsApp.on_flow_completion`
-     - Handle flow completions
+     - Tratar conclusões de flow
    * - :meth:`~WhatsApp.on_phone_number_change`
-     - Handle phone number changes
+     - Tratar mudanças de número de telefone
    * - :meth:`~WhatsApp.on_identity_change`
-     - Handle identity changes
+     - Tratar mudanças de identidade
    * - :meth:`~WhatsApp.on_call_connect`
-     - Handle incoming/outgoing call connections
+     - Tratar conexões de chamadas recebidas/efetuadas
    * - :meth:`~WhatsApp.on_call_terminate`
-     - Handle call terminations
+     - Tratar encerramentos de chamada
    * - :meth:`~WhatsApp.on_call_status`
-     - Handle call status updates
+     - Tratar atualizações de status de chamada
    * - :meth:`~WhatsApp.on_call_permission_update`
-     - Handle call permission updates
+     - Tratar atualizações de permissão de chamada
    * - :meth:`~WhatsApp.on_user_marketing_preferences`
-     - Handle user marketing preferences updates
+     - Tratar atualizações de preferências de marketing do usuário
    * - :meth:`~WhatsApp.on_template_status_update`
-     - Handle template status updates
+     - Tratar atualizações de status de template
    * - :meth:`~WhatsApp.on_template_category_update`
-     - Handle template category changes
+     - Tratar mudanças de categoria de template
    * - :meth:`~WhatsApp.on_template_quality_update`
-     - Handle template quality changes
+     - Tratar mudanças de qualidade de template
    * - :meth:`~WhatsApp.on_template_components_update`
-     - Handle template components updates
+     - Tratar atualizações de componentes de template
    * - :meth:`~WhatsApp.on_raw_update`
-     - Handle raw updates from WhatsApp
+     - Tratar atualizações brutas do WhatsApp
    * - :meth:`~WhatsApp.add_handlers`
-     - Dynamically add handlers programmatically
+     - Adicionar handlers dinamicamente via código
    * - :meth:`~WhatsApp.remove_handlers`
-     - Remove handlers programmatically
+     - Remover handlers via código
    * - :meth:`~WhatsApp.remove_callbacks`
-     - Remove handlers by callbacks
+     - Remover handlers por callbacks
    * - :meth:`~WhatsApp.add_flow_request_handler`
-     - Add flow request handlers programmatically
+     - Adicionar handlers de requisição de flow via código
    * - :meth:`~WhatsApp.load_handlers_modules`
-     - Load handlers from external modules
+     - Carregar handlers de módulos externos
 
 
 Listening
 ---------
 
-You can listen for updates from specific users:
+Você pode ouvir atualizações de usuários específicos:
 
 .. list-table::
    :widths: 40 60
@@ -169,15 +169,15 @@ You can listen for updates from specific users:
    * - Method
      - Description
    * - :meth:`~WhatsApp.listen`
-     - Listen to a specific user update
+     - Ouvir uma atualização de um usuário específico
    * - :meth:`~WhatsApp.stop_listening`
-     - Stop listening
+     - Parar de ouvir
 
 
-Media
+Mídia
 -----
 
-Manage media with ease:
+Gerencie mídia com facilidade:
 
 .. list-table::
    :widths: 40 60
@@ -186,23 +186,23 @@ Manage media with ease:
    * - Method
      - Description
    * - :meth:`~WhatsApp.upload_media`
-     - Upload media to WhatsApp servers
+     - Fazer upload de mídia para os servidores do WhatsApp
    * - :meth:`~WhatsApp.download_media`
-     - Download media
+     - Baixar mídia
    * - :meth:`~WhatsApp.stream_media`
-     - Stream media
+     - Transmitir mídia em stream
    * - :meth:`~WhatsApp.get_media_bytes`
-     - Get media as bytes
+     - Obter mídia como bytes
    * - :meth:`~WhatsApp.get_media_url`
-     - Get direct media URL
+     - Obter URL direta de mídia
    * - :meth:`~WhatsApp.delete_media`
-     - Delete media from WhatsApp servers
+     - Excluir mídia dos servidores do WhatsApp
 
 
 Templates
 ---------
 
-Create, update, and manage message templates:
+Crie, atualize e gerencie templates de mensagem:
 
 .. list-table::
    :widths: 40 60
@@ -211,29 +211,29 @@ Create, update, and manage message templates:
    * - Method
      - Description
    * - :meth:`~WhatsApp.create_template`
-     - Create a new template
+     - Criar um novo template
    * - :meth:`~WhatsApp.upsert_authentication_template`
-     - Bulk create or update authentication templates
+     - Criar ou atualizar templates de autenticação em lote
    * - :meth:`~WhatsApp.get_templates`
-     - Retrieve all templates
+     - Recuperar todos os templates
    * - :meth:`~WhatsApp.get_template`
-     - Get details of a specific template
+     - Obter detalhes de um template específico
    * - :meth:`~WhatsApp.update_template`
-     - Update an existing template
+     - Atualizar um template existente
    * - :meth:`~WhatsApp.delete_template`
-     - Delete a template
+     - Excluir um template
    * - :meth:`~WhatsApp.unpause_template`
-     - Unpause a previously paused template
+     - Reativar um template pausado anteriormente
    * - :meth:`~WhatsApp.compare_templates`
-     - Compare two templates
+     - Comparar dois templates
    * - :meth:`~WhatsApp.migrate_templates`
-     - Migrate templates between WABAs
+     - Migrar templates entre WABAs
 
 
 Flows
 -----
 
-Programmatically manage flows:
+Gerencie flows via código:
 
 .. list-table::
    :widths: 40 60
@@ -242,33 +242,33 @@ Programmatically manage flows:
    * - Method
      - Description
    * - :meth:`~WhatsApp.create_flow`
-     - Create a flow
+     - Criar um flow
    * - :meth:`~WhatsApp.update_flow_metadata`
-     - Update flow metadata (name, categories, endpoint, etc.)
+     - Atualizar metadados do flow (nome, categorias, endpoint, etc.)
    * - :meth:`~WhatsApp.update_flow_json`
-     - Update flow JSON definition
+     - Atualizar a definição JSON do flow
    * - :meth:`~WhatsApp.publish_flow`
-     - Publish a flow
+     - Publicar um flow
    * - :meth:`~WhatsApp.delete_flow`
-     - Delete a flow
+     - Excluir um flow
    * - :meth:`~WhatsApp.deprecate_flow`
-     - Deprecate a flow
+     - Depreciar um flow
    * - :meth:`~WhatsApp.get_flow`
-     - Get details of a flow
+     - Obter detalhes de um flow
    * - :meth:`~WhatsApp.get_flows`
-     - List all flows
+     - Listar todos os flows
    * - :meth:`~WhatsApp.get_flow_metrics`
-     - Get flow performance metrics
+     - Obter métricas de desempenho do flow
    * - :meth:`~WhatsApp.get_flow_assets`
-     - Get flow assets
+     - Obter ativos do flow
    * - :meth:`~WhatsApp.migrate_flows`
-     - Migrate flows between WABAs
+     - Migrar flows entre WABAs
 
 
 Business
 --------
 
-Manage business account and profile:
+Gerencie a conta e o perfil do negócio:
 
 .. list-table::
    :widths: 40 60
@@ -277,33 +277,33 @@ Manage business account and profile:
    * - Method
      - Description
    * - :meth:`~WhatsApp.get_business_account`
-     - Get business account details
+     - Obter detalhes da conta do negócio
    * - :meth:`~WhatsApp.get_business_profile`
-     - Get business profile
+     - Obter perfil do negócio
    * - :meth:`~WhatsApp.get_business_phone_numbers`
-     - Get all business phone numbers
+     - Obter todos os números de telefone do negócio
    * - :meth:`~WhatsApp.get_business_phone_number`
-     - Get a specific business phone number
+     - Obter um número de telefone específico do negócio
    * - :meth:`~WhatsApp.update_business_profile`
-     - Update profile details (name, description, picture, etc.)
+     - Atualizar detalhes do perfil (nome, descrição, foto, etc.)
    * - :meth:`~WhatsApp.update_display_name`
-     - Update phone number display name
+     - Atualizar o nome de exibição do número de telefone
    * - :meth:`~WhatsApp.update_conversational_automation`
-     - Update commands and ice breakers
+     - Atualizar comandos e ice breakers
    * - :meth:`~WhatsApp.set_business_public_key`
-     - Upload business public key
+     - Fazer upload da chave pública do negócio
    * - :meth:`~WhatsApp.get_business_phone_number_settings`
-     - Get phone number settings
+     - Obter configurações do número de telefone
    * - :meth:`~WhatsApp.update_business_phone_number_settings`
-     - Update phone number settings
+     - Atualizar configurações do número de telefone
    * - :meth:`~WhatsApp.register_phone_number`
-     - Register a new phone number
+     - Registrar um novo número de telefone
    * - :meth:`~WhatsApp.deregister_phone_number`
-     - Deregister a phone number
+     - Cancelar o registro de um número de telefone
 
 
-Managing Users
---------------
+Gerenciar Usuários
+------------------
 
 .. list-table::
    :widths: 40 60
@@ -312,11 +312,11 @@ Managing Users
    * - Method
      - Description
    * - :meth:`~WhatsApp.block_users`
-     - Block users
+     - Bloquear usuários
    * - :meth:`~WhatsApp.unblock_users`
-     - Unblock users
+     - Desbloquear usuários
    * - :meth:`~WhatsApp.get_blocked_users`
-     - Retrieve blocked users
+     - Recuperar usuários bloqueados
 
 
 QR Codes
@@ -329,15 +329,15 @@ QR Codes
    * - Method
      - Description
    * - :meth:`~WhatsApp.create_qr_code`
-     - Create a QR code
+     - Criar um QR code
    * - :meth:`~WhatsApp.get_qr_code`
-     - Get details of a QR code
+     - Obter detalhes de um QR code
    * - :meth:`~WhatsApp.get_qr_codes`
-     - List all QR codes
+     - Listar todos os QR codes
    * - :meth:`~WhatsApp.update_qr_code`
-     - Update a QR code
+     - Atualizar um QR code
    * - :meth:`~WhatsApp.delete_qr_code`
-     - Delete a QR code
+     - Excluir um QR code
 
 
 Commerce
@@ -350,9 +350,9 @@ Commerce
    * - Method
      - Description
    * - :meth:`~WhatsApp.get_commerce_settings`
-     - Get commerce settings
+     - Obter configurações de comércio
    * - :meth:`~WhatsApp.update_commerce_settings`
-     - Update commerce settings
+     - Atualizar configurações de comércio
 
 
 Calls
@@ -365,21 +365,21 @@ Calls
    * - Method
      - Description
    * - :meth:`~WhatsApp.get_call_permissions`
-     - Get call permissions
+     - Obter permissões de chamada
    * - :meth:`~WhatsApp.pre_accept_call`
-     - Pre-accept a call
+     - Pré-aceitar uma chamada
    * - :meth:`~WhatsApp.accept_call`
-     - Accept a call
+     - Aceitar uma chamada
    * - :meth:`~WhatsApp.reject_call`
-     - Reject a call
+     - Rejeitar uma chamada
    * - :meth:`~WhatsApp.terminate_call`
-     - Terminate a call
+     - Encerrar uma chamada
 
 
 Server
 ------
 
-Integrate with webhook events manually:
+Integre com eventos de webhook manualmente:
 
 .. list-table::
    :widths: 40 60
@@ -388,11 +388,11 @@ Integrate with webhook events manually:
    * - Method
      - Description
    * - :meth:`~WhatsApp.webhook_update_handler`
-     - Handle webhook updates manually
+     - Tratar atualizações de webhook manualmente
    * - :meth:`~WhatsApp.webhook_challenge_handler`
-     - Handle webhook challenge manually
+     - Tratar o desafio de webhook manualmente
    * - :meth:`~WhatsApp.get_flow_request_handler`
-     - Retrieve flow request handler
+     - Recuperar o handler de requisição de flow
 
 
 Others
@@ -405,17 +405,17 @@ Others
    * - Method
      - Description
    * - :meth:`~WhatsApp.get_app_access_token`
-     - Retrieve app access token
+     - Recuperar token de acesso do aplicativo
    * - :meth:`~WhatsApp.set_app_callback_url`
-     - Set app callback URL
+     - Definir a URL de callback do aplicativo
    * - :meth:`~WhatsApp.override_waba_callback_url`
-     - Override WABA callback URL
+     - Sobrescrever a URL de callback da WABA
    * - :meth:`~WhatsApp.delete_waba_callback_url`
-     - Delete WABA callback URL
+     - Excluir a URL de callback da WABA
    * - :meth:`~WhatsApp.override_phone_callback_url`
-     - Override phone callback URL
+     - Sobrescrever a URL de callback do telefone
    * - :meth:`~WhatsApp.delete_phone_callback_url`
-     - Delete phone callback URL
+     - Excluir a URL de callback do telefone
 
 
 .. toctree::
