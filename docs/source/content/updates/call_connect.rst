@@ -1,5 +1,5 @@
-Call Connect
-=============
+Conexão de Chamada
+==================
 
 .. currentmodule:: pywa.types.calls
 

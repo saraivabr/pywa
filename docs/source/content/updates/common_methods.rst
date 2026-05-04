@@ -1,5 +1,5 @@
-Common methods
-================
+Métodos comuns
+==============
 
 .. currentmodule:: pywa.types.base_update
 

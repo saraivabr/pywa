@@ -1,5 +1,5 @@
-Identity Change
-=================
+Mudança de Identidade
+=====================
 
 .. currentmodule:: pywa.types.system
 

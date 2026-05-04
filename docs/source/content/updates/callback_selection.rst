@@ -1,4 +1,4 @@
-Callback Selection
+Seleção de Callback
 ===================
 
 .. currentmodule:: pywa.types

@@ -1,9 +1,9 @@
-Message
-=======
+Mensagem
+========
 
 .. currentmodule:: pywa.types
 
-The :class:`Message` type is used to represent incoming messages from WhatsApp user.
+O tipo :class:`Message` é usado para representar mensagens recebidas de usuários do WhatsApp.
 
 
 .. autoclass:: Message()

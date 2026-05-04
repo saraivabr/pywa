@@ -1,5 +1,5 @@
-Call Permission Update
-========================
+Atualização de Permissão de Chamada
+===================================
 
 .. currentmodule:: pywa.types.calls
 

@@ -1,5 +1,5 @@
-Template Components Update
-======================
+Atualização de Componentes de Template
+======================================
 
 .. currentmodule:: pywa.types
 
