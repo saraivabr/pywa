@@ -3,7 +3,7 @@
 
 .. warning::
 
-    The examples are outdated. please read the documentation for the latest features and usage.
+    Os exemplos estão desatualizados. Por favor, leia a documentação para ver as funcionalidades e o uso mais recentes.
 
 .. toctree::
     template

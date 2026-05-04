@@ -3,22 +3,22 @@
 
 .. currentmodule:: pywa.types.templates
 
-In the realm of WhatsApp messaging, templates serve as pre-approved message structures that businesses can use to initiate conversations with users. These templates are essential for sending notifications, updates, or any message that requires prior approval from WhatsApp.
+No universo das mensagens WhatsApp, os templates são estruturas de mensagem pré-aprovadas que as empresas podem usar para iniciar conversas com usuários. Esses templates são essenciais para enviar notificações, atualizações ou qualquer mensagem que exija aprovação prévia do WhatsApp.
 
-Think of templates as reusable message blueprints that ensure your communications are consistent, compliant, and ready to engage your audience. They can include various components such as headers, bodies, footers, and buttons, allowing for rich and interactive messages.
+Pense nos templates como modelos de mensagem reutilizáveis que garantem que suas comunicações sejam consistentes, conformes e prontas para engajar seu público. Eles podem incluir vários componentes, como cabeçalhos, corpos, rodapés e botões, permitindo mensagens ricas e interativas.
 
-PyWa offers a comprehensive and intuitive interface to create, manage, and send these templates seamlessly. Whether you're looking to send promotional offers, account updates, or authentication codes, PyWa's templating system ensures your messages are structured, consistent, and compliant with WhatsApp's guidelines.
+PyWa oferece uma interface abrangente e intuitiva para criar, gerenciar e enviar esses templates de forma integrada. Seja para enviar ofertas promocionais, atualizações de conta ou códigos de autenticação, o sistema de templates do PyWa garante que suas mensagens sejam estruturadas, consistentes e em conformidade com as diretrizes do WhatsApp.
 
-- From `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates>`_:
+- De `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/business-management-api/message-templates>`_:
 
-    Templates are WhatsApp Business Account assets that can be sent in template messages via Cloud API or Marketing Messages Lite API. Template messages are the only type of message that can be sent to WhatsApp users outside of a `customer service window <https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages/#customer-service-windows>`_, so templates are commonly used when messaging users in bulk, or when you need to message a user, but no customer service window is open between you and the user.
+    Templates são ativos da conta WhatsApp Business que podem ser enviados em mensagens de template via Cloud API ou Marketing Messages Lite API. Mensagens de template são o único tipo de mensagem que pode ser enviado a usuários do WhatsApp fora de uma `janela de atendimento ao cliente <https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages/#customer-service-windows>`_, por isso os templates são comumente usados ao enviar mensagens em massa ou quando você precisa enviar uma mensagem a um usuário sem que uma janela de atendimento esteja aberta entre vocês.
 
-Defining Template
-------------------
+Definindo o Template
+---------------------
 
-To create a template, you need to define its structure using the :class:`Template` class from the :mod:`pywa.types.templates` module. This involves specifying the template's name, language, category, parameter format, and the components that make up the template.
+Para criar um template, você precisa definir sua estrutura usando a classe :class:`Template` do módulo :mod:`pywa.types.templates`. Isso envolve especificar o nome, idioma, categoria, formato de parâmetro e os componentes que compõem o template.
 
-In the example below, we create a simple Order Confirmation template with a header, body, footer, and buttons.
+No exemplo abaixo, criamos um template simples de confirmação de pedido com cabeçalho, corpo, rodapé e botões.
 
 .. code-block:: python
     :caption: order_confirmation_template.py
@@ -55,27 +55,27 @@ In the example below, we create a simple Order Confirmation template with a head
         ],
     )
 
-In this example, we define a template named "order_confirmation" in English (US) for marketing purposes.
-We use a named parameter format, allowing us to use descriptive names for our parameters like ``name``, ``order_id``, and ``delivery_date`` in the body text.
-The template includes a header with text, a body with dynamic parameters, buttons for quick replies and URLs, and a footer with additional information.
+Neste exemplo, definimos um template chamado "order_confirmation" em inglês (EUA) para fins de marketing.
+Usamos um formato de parâmetro nomeado, o que nos permite usar nomes descritivos para os parâmetros, como ``name``, ``order_id`` e ``delivery_date`` no texto do corpo.
+O template inclui um cabeçalho com texto, um corpo com parâmetros dinâmicos, botões de resposta rápida e URL, e um rodapé com informações adicionais.
 
 
 .. figure:: ../../../../_static/examples/order-confirmation-template.png
     :align: center
 
-    This is how the template will look in WhatsApp once sent.
+    É assim que o template ficará no WhatsApp após o envio.
 
 
-Template Components
---------------------
+Componentes do Template
+------------------------
 
 .. list-table::
    :widths: 10 60
    :header-rows: 1
 
-   * - Category
-     - Types
-   * - Headers
+   * - Categoria
+     - Tipos
+   * - Cabeçalhos
      - :class:`HeaderText`,
        :class:`HeaderImage`,
        :class:`HeaderVideo`,
@@ -83,13 +83,13 @@ Template Components
        :class:`HeaderGIF`,
        :class:`HeaderLocation`,
        :class:`HeaderProduct`
-   * - Bodies
+   * - Corpos
      - :class:`BodyText`,
        :class:`AuthenticationBody`
-   * - Footers
+   * - Rodapés
      - :class:`FooterText`,
        :class:`AuthenticationFooter`
-   * - Buttons
+   * - Botões
      - :class:`Buttons`,
        :class:`QuickReplyButton`,
        :class:`URLButton`,
@@ -103,15 +103,15 @@ Template Components
        :class:`OneTapOTPButton`,
        :class:`ZeroTapOTPButton`,
        :class:`CopyCodeOTPButton`
-   * - Others
+   * - Outros
      - :class:`Carousel`,
        :class:`LimitedTimeOffer`
 
 
-Creating Template
------------------
+Criando o Template
+-------------------
 
-After defining your template, you can create it using the :meth:`~pywa.client.WhatsApp.create_template` method:
+Após definir seu template, você pode criá-lo usando o método :meth:`~pywa.client.WhatsApp.create_template`:
 
 .. code-block:: python
     :caption: create_template.py
@@ -124,12 +124,12 @@ After defining your template, you can create it using the :meth:`~pywa.client.Wh
     wa.create_template(order_confirmation)
     # CreatedTemplate(id='...', category=TemplateCategory.MARKETING, status=TemplateStatus.PENDING)
 
-After creating a template, you need to wait for WhatsApp to approve it. This process can take some time, and you can check the status of your template using the :meth:`~pywa.client.WhatsApp.get_template` method or by checking the `WhatsApp Manager Dashboard <https://business.facebook.com/latest/whatsapp_manager/>`_ Manage templates.
+Após criar um template, você precisa aguardar a aprovação do WhatsApp. Esse processo pode levar algum tempo, e você pode verificar o status do seu template usando o método :meth:`~pywa.client.WhatsApp.get_template` ou acessando o `WhatsApp Manager Dashboard <https://business.facebook.com/latest/whatsapp_manager/>`_ em Gerenciar templates.
 
 .. seealso::
-    You can also use the :meth:`~pywa.client.WhatsApp.get_templates` method to retrieve a list of all templates associated with your business account.
+    Você também pode usar o método :meth:`~pywa.client.WhatsApp.get_templates` para recuperar uma lista de todos os templates associados à sua conta empresarial.
 
-You can also :meth:`~pywa.types.templates.CreatedTemplate.wait_until_approved` for the template to be approved, which will block the execution until the template is approved or rejected.
+Você também pode usar :meth:`~pywa.types.templates.CreatedTemplate.wait_until_approved` para aguardar a aprovação do template, o que bloqueará a execução até que o template seja aprovado ou rejeitado.
 
 .. code-block:: python
     :caption: wait_until_approved.py
@@ -142,7 +142,7 @@ You can also :meth:`~pywa.types.templates.CreatedTemplate.wait_until_approved` f
     template = wa.create_template(order_confirmation)
     template.wait_until_approved()
 
-Or you can handle the template status using the :meth:`~pywa.client.WhatsApp.on_template_status_update` decorator, which allows you to define a callback function that will be called whenever the template status changes:
+Ou você pode lidar com o status do template usando o decorador :meth:`~pywa.client.WhatsApp.on_template_status_update`, que permite definir uma função de callback que será chamada sempre que o status do template mudar:
 
 .. code-block:: python
     :caption: on_template_status_update.py
@@ -162,10 +162,10 @@ Or you can handle the template status using the :meth:`~pywa.client.WhatsApp.on_
             print(f"Template {update.template_id} rejected: {update.reason}")
 
 
-Sending Template
------------------
+Enviando o Template
+--------------------
 
-Once your template is approved, you can send it using the :meth:`~pywa.client.WhatsApp.send_template` method.
+Assim que seu template for aprovado, você pode enviá-lo usando o método :meth:`~pywa.client.WhatsApp.send_template`.
 
 .. code-block:: python
     :caption: send_template.py
@@ -184,9 +184,9 @@ Once your template is approved, you can send it using the :meth:`~pywa.client.Wh
         params=[...]
     )
 
-Now, the ``params`` list should contain the values for the components defined in the template.
+Agora, a lista ``params`` deve conter os valores para os componentes definidos no template.
 
-The best practice is to use the Template object you created earlier as a reference for the parameters, ensuring that the values match the expected format:
+A melhor prática é usar o objeto Template criado anteriormente como referência para os parâmetros, garantindo que os valores correspondam ao formato esperado:
 
 .. code-block:: python
     :caption: send_template_with_object.py
@@ -238,11 +238,11 @@ The best practice is to use the Template object you created earlier as a referen
         ],
     )
 
-As you can see, we use the `params` method of each component to generate the parameters needed for the template.
+Como você pode ver, usamos o método `params` de cada componente para gerar os parâmetros necessários para o template.
 
 .. tip::
 
-    Using ``params`` on the instance ensures that the parameters are correctly formatted and match the expected types, reducing the risk of errors when sending the template. But sometimes, you don't have access to the template components instances (e.g when creating using WhatsApp Manager Dashboard), and you need to create the parameters manually. In that case, you can still use the ``params`` method on each component to create the parameters directly, as shown below:
+    Usar ``params`` na instância garante que os parâmetros estejam corretamente formatados e correspondam aos tipos esperados, reduzindo o risco de erros ao enviar o template. Mas às vezes você não tem acesso às instâncias dos componentes do template (por ex. ao criar pelo WhatsApp Manager Dashboard) e precisa criar os parâmetros manualmente. Nesse caso, você ainda pode usar o método ``params`` em cada componente para criar os parâmetros diretamente, como mostrado abaixo:
 
     .. code-block:: python
         :caption: send_template_without_object.py
@@ -266,14 +266,14 @@ As you can see, we use the `params` method of each component to generate the par
         )
 
 
-Media Templates
------------------
+Templates com Mídia
+--------------------
 
-When creating templates that include media, such as images, videos, or documents, you need to provide example of the media in the template definition. This is done using the `example` parameter in the media components.
+Ao criar templates que incluam mídia, como imagens, vídeos ou documentos, você precisa fornecer um exemplo da mídia na definição do template. Isso é feito usando o parâmetro `example` nos componentes de mídia.
 
 .. note::
 
-    Media examples automatically uploaded via the `Upload Resumable API <https://developers.facebook.com/docs/graph-api/guides/upload>`_, this requires to provide ``app_id`` when initializing the WhatsApp client. If you don't provide the ``app_id``, you will need to upload the media manually using the Upload Resumable API before creating the template and provide the file handle in the `example` parameter.
+    Os exemplos de mídia são automaticamente enviados via `Upload Resumable API <https://developers.facebook.com/docs/graph-api/guides/upload>`_, o que requer o fornecimento de ``app_id`` ao inicializar o cliente WhatsApp. Se você não fornecer o ``app_id``, precisará fazer o upload da mídia manualmente usando a Upload Resumable API antes de criar o template e fornecer o identificador do arquivo no parâmetro `example`.
 
 .. code-block:: python
     :caption: media_template.py
@@ -293,11 +293,11 @@ When creating templates that include media, such as images, videos, or documents
         ],
     )
 
-The ``example`` parameter can be a URL, file path, :class:`~pywa.types.media.Media` or bytes. This example media will be used by WhatsApp to verify the template and ensure it meets their guidelines.
+O parâmetro ``example`` pode ser uma URL, caminho de arquivo, :class:`~pywa.types.media.Media` ou bytes. Essa mídia de exemplo será usada pelo WhatsApp para verificar o template e garantir que ele atenda às diretrizes deles.
 
 .. tip::
 
-    PyWa uploads the media automatically when creating the template and caches the file handle (from Upload Resumable API) in the header object. This means that if you create multiple templates with the same media example - you may want to use the same media object to avoid uploading the same media multiple times. This will save you time and resources.
+    PyWa faz o upload da mídia automaticamente ao criar o template e armazena em cache o identificador do arquivo (da Upload Resumable API) no objeto de cabeçalho. Isso significa que, se você criar vários templates com o mesmo exemplo de mídia, pode reutilizar o mesmo objeto de mídia para evitar uploads repetidos da mesma mídia. Isso economizará tempo e recursos.
 
 
     .. code-block:: python
@@ -329,10 +329,10 @@ The ``example`` parameter can be a URL, file path, :class:`~pywa.types.media.Med
             wa.create_template(media_template)
 
 
-    The same goes for other media components (:class:`HeaderVideo` and :class:`HeaderDocument`), you can reuse the same media object across multiple templates to avoid uploading the same media multiple times.
+    O mesmo se aplica a outros componentes de mídia (:class:`HeaderVideo` e :class:`HeaderDocument`): você pode reutilizar o mesmo objeto de mídia em vários templates para evitar uploads repetidos.
 
 
-When sending a media template, you can use the same approach as before, but now you need to provide the media as an parameter in the template:
+Ao enviar um template com mídia, você pode usar a mesma abordagem de antes, mas agora precisa fornecer a mídia como parâmetro no template:
 
 .. code-block:: python
     :caption: send_media_template.py
@@ -361,7 +361,7 @@ When sending a media template, you can use the same approach as before, but now 
 
 .. tip::
 
-    If you are sending the same template multiple times, you can cache the media object and reuse it across multiple template sends. This will save you time and resources, as the media will not be uploaded again.
+    Se você estiver enviando o mesmo template várias vezes, pode armazenar em cache o objeto de mídia e reutilizá-lo em múltiplos envios de template. Isso economizará tempo e recursos, pois a mídia não será enviada novamente.
 
     .. code-block:: python
         :caption: send_media_template_with_cache.py
@@ -395,12 +395,12 @@ When sending a media template, you can use the same approach as before, but now 
             )
 
 
-Authentication Templates
-----------------------------
+Templates de Autenticação
+--------------------------
 
-Authentication templates are a special type of template used for sending authentication codes to users. If you need to send OTPs (One-Time Passwords) to users so they can verify their identity or complete a transaction in another app, you can use authentication templates.
+Templates de autenticação são um tipo especial de template usado para enviar códigos de autenticação aos usuários. Se você precisar enviar OTPs (One-Time Passwords) para que os usuários verifiquem sua identidade ou concluam uma transação em outro aplicativo, pode usar templates de autenticação.
 
-Creating an authentication template is similar to creating a regular template, but it includes specific components for authentication, such as the :class:`AuthenticationBody` and :class:`AuthenticationFooter`.
+Criar um template de autenticação é semelhante a criar um template comum, mas inclui componentes específicos para autenticação, como :class:`AuthenticationBody` e :class:`AuthenticationFooter`.
 
 .. code-block:: python
     :caption: authentication_template.py
@@ -424,9 +424,9 @@ Creating an authentication template is similar to creating a regular template, b
         ],
     )
 
-The OTP button can be one of the following types:
+O botão de OTP pode ser de um dos seguintes tipos:
 
-- :class:`OneTapOTPButton`: A button that allows the user to tap and automatically fill in the OTP code in the app:
+- :class:`OneTapOTPButton`: Um botão que permite ao usuário tocar e preencher automaticamente o código OTP no aplicativo:
 
     .. code-block:: python
         :caption: one_tap_otp_button.py
@@ -452,7 +452,7 @@ The OTP button can be one of the following types:
 
 --
 
-- :class:`ZeroTapOTPButton`: A button that allows the user to receive the OTP code without any interaction.
+- :class:`ZeroTapOTPButton`: Um botão que permite ao usuário receber o código OTP sem nenhuma interação.
 
     .. code-block:: python
         :caption: zero_tap_otp_button.py
@@ -478,7 +478,7 @@ The OTP button can be one of the following types:
 
 --
 
-- :class:`CopyCodeOTPButton`: A button that allows the user to copy the OTP code to the clipboard and use it in another app.
+- :class:`CopyCodeOTPButton`: Um botão que permite ao usuário copiar o código OTP para a área de transferência e usá-lo em outro aplicativo.
 
     .. code-block:: python
         :caption: copy_code_otp_button.py
@@ -495,7 +495,7 @@ The OTP button can be one of the following types:
 
 --
 
-When sending an authentication template you need to provide the OTP code as a parameter to the :class:`AuthenticationBody` and to the OTP button you are using.
+Ao enviar um template de autenticação, você precisa fornecer o código OTP como parâmetro para o :class:`AuthenticationBody` e para o botão OTP que você está usando.
 
 .. code-block:: python
     :caption: send_authentication_template.py
@@ -519,9 +519,9 @@ When sending an authentication template you need to provide the OTP code as a pa
 
 .. tip::
 
-    Authentication templates texts are fixed and cannot be edited (except the button title), So WhatsApp allows you to create and update multiple authentication templates with the same name. This means you can create multiple authentication templates with the same name, but for different languages.
+    Os textos dos templates de autenticação são fixos e não podem ser editados (exceto o título do botão), então o WhatsApp permite criar e atualizar vários templates de autenticação com o mesmo nome. Isso significa que você pode criar vários templates de autenticação com o mesmo nome, mas para idiomas diferentes.
 
-    To create an authentication template for multiple languages, you can use the :meth:`~pywa.client.WhatsApp.upsert_authentication_template` method, which allows you to create or update an authentication template for multiple languages at once.
+    Para criar um template de autenticação para vários idiomas, você pode usar o método :meth:`~pywa.client.WhatsApp.upsert_authentication_template`, que permite criar ou atualizar um template de autenticação para vários idiomas de uma vez.
 
     .. code-block:: python
         :caption: create_authentication_template_multiple_languages.py
@@ -542,24 +542,24 @@ When sending an authentication template you need to provide the OTP code as a pa
         for template in templates:
             print(f'Template {template.id} created with status {template.status}')
 
-Template Library
--------------------
+Biblioteca de Templates
+------------------------
 
-PyWa also provides an easy way to create templates from the Template Library. The library contains a collection of pre-defined templates that you can use to quickly create and send messages without having to define them from scratch.
+PyWa também oferece uma forma fácil de criar templates a partir da Biblioteca de Templates. A biblioteca contém uma coleção de templates predefinidos que você pode usar para criar e enviar mensagens rapidamente sem precisar defini-los do zero.
 
-From `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/template-library>`_:
+De `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-message-templates/template-library>`_:
 
     .. image:: ../../../../_static/guides/template-library.webp
         :alt: Template Library
         :width: 100%
 
-    Template Library makes it faster and easier for businesses to create utility templates for common use cases, like payment reminders, delivery updates — and authentication templates for common identity verification use cases.
+    A Biblioteca de Templates torna mais rápido e fácil para as empresas criarem templates utilitários para casos de uso comuns, como lembretes de pagamento, atualizações de entrega — e templates de autenticação para casos comuns de verificação de identidade.
 
-    These pre-written templates have already been categorized as utility or authentication. Library templates contain fixed content that cannot be edited and parameters you can adapt for business or user-specific information.
+    Esses templates pré-escritos já foram categorizados como utilitário ou autenticação. Os templates da biblioteca contêm conteúdo fixo que não pode ser editado e parâmetros que você pode adaptar para informações específicas da empresa ou do usuário.
 
-    You can browse and create templates using Template Library in WhatsApp Manager, or programmatically via the API.
+    Você pode navegar e criar templates usando a Biblioteca de Templates no WhatsApp Manager ou de forma programática via API.
 
-To create a template from the library, you need to get the template library name and pass it to the :meth:`~pywa.client.WhatsApp.create_template` method:
+Para criar um template da biblioteca, você precisa obter o nome do template da biblioteca e passá-lo para o método :meth:`~pywa.client.WhatsApp.create_template`:
 
 .. code-block:: python
     :caption: create_template_from_library.py
@@ -582,7 +582,7 @@ To create a template from the library, you need to get the template library name
     # CreatedTemplate(id='...', category=TemplateCategory.UTILITY, status=TemplateStatus.PENDING)
 
 
-If the library template requires parameters, you need to provide them when creating the template. The parameters should match the ones defined in the library template:
+Se o template da biblioteca requer parâmetros, você precisa fornecê-los ao criar o template. Os parâmetros devem corresponder aos definidos no template da biblioteca:
 
 .. code-block:: python
     :caption: create_template_from_library_with_params.py

@@ -3,28 +3,28 @@
 
 .. currentmodule:: pywa.types
 
-Updates are the **incoming events** from the WhatsApp Cloud API.
-They are sent to your webhook URL and converted by PyWa into type-safe objects that are easy to handle.
+Atualizações são os **eventos recebidos** da API do WhatsApp Cloud.
+Elas são enviadas para a URL do seu webhook e convertidas pelo PyWa em objetos com tipagem segura, fáceis de lidar.
 
-In WhatsApp Cloud API, updates are called **fields**, and you need to subscribe to them in order to receive them at your webhook URL.
+Na API do WhatsApp Cloud, as atualizações são chamadas de **fields** (campos), e você precisa se inscrever nelas para recebê-las na URL do seu webhook.
 
 -----------------
-Supported Fields
+Campos Suportados
 -----------------
 
-The currently supported fields in PyWa are:
+Os campos atualmente suportados pelo PyWa são:
 
-- ``messages`` → all user-related updates (messages, callbacks, message status updates)
-- ``calls`` → call connect, terminate, and status updates
-- ``message_template_status_update`` → template approved, rejected, etc.
-- ``message_template_quality_update`` → template quality score changed
-- ``message_template_components_update`` → template components changed (header, body, footer, buttons)
-- ``template_category_update`` → template category changed
-- ``user_preferences`` → user marketing preferences
+- ``messages`` → todas as atualizações relacionadas ao usuário (mensagens, callbacks, atualizações de status de mensagem)
+- ``calls`` → conectar chamada, encerrar e atualizações de status
+- ``message_template_status_update`` → template aprovado, rejeitado, etc.
+- ``message_template_quality_update`` → pontuação de qualidade do template alterada
+- ``message_template_components_update`` → componentes do template alterados (cabeçalho, corpo, rodapé, botões)
+- ``template_category_update`` → categoria do template alterada
+- ``user_preferences`` → preferências de marketing do usuário
 
 .. tip::
 
-   If you want to handle other types of updates, use :func:`~pywa.client.WhatsApp.on_raw_update` decorator or the :py:class:`~pywa.handlers.RawUpdateHandler` class.
+   Se você quiser lidar com outros tipos de atualizações, use o decorador :func:`~pywa.client.WhatsApp.on_raw_update` ou a classe :py:class:`~pywa.handlers.RawUpdateHandler`.
 
    .. code-block:: python
 
@@ -37,150 +37,150 @@ The currently supported fields in PyWa are:
           print("Received raw update:", raw)
 
 -----------------
-Update Types
+Tipos de Atualização
 -----------------
 
-The supported fields are automatically handled by PyWa and converted into Python classes.
+Os campos suportados são processados automaticamente pelo PyWa e convertidos em classes Python.
 
-👉 To learn how to handle them, see: `Handlers <../handlers/overview.html>`_
+👉 Para aprender a lidar com eles, veja: `Handlers <../handlers/overview.html>`_
 
-**User-related updates:**
+**Atualizações relacionadas ao usuário:**
 
 .. list-table::
    :widths: 25 75
    :header-rows: 1
 
-   * - Type
-     - Description
+   * - Tipo
+     - Descrição
    * - :py:class:`~pywa.types.message.Message`
-     - A message sent by a user (text, media, order, location, etc.)
+     - Uma mensagem enviada por um usuário (texto, mídia, pedido, localização, etc.)
    * - :py:class:`~pywa.types.callback.CallbackButton`
-     - A :py:class:`~pywa.types.callback.Button` | :py:class:`~pywa.types.templates.QuickReplyButton` pressed by a user
+     - Um :py:class:`~pywa.types.callback.Button` | :py:class:`~pywa.types.templates.QuickReplyButton` pressionado por um usuário
    * - :py:class:`~pywa.types.callback.CallbackSelection`
-     - A :py:class:`~pywa.types.callback.SectionRow` chosen by a user
+     - Um :py:class:`~pywa.types.callback.SectionRow` escolhido por um usuário
    * - :py:class:`~pywa.types.flows.FlowCompletion`
-     - A flow completed by a user
+     - Um flow concluído por um usuário
    * - :py:class:`~pywa.types.message_status.MessageStatus`
-     - A message status update (delivered, seen, etc.)
+     - Uma atualização de status de mensagem (entregue, vista, etc.)
    * - :py:class:`~pywa.types.chat_opened.ChatOpened`
-     - A chat opened by a user
+     - Um chat aberto por um usuário
    * - :py:class:`~pywa.types.system.PhoneNumberChange`
-     - A user's phone number changed
+     - O número de telefone de um usuário foi alterado
    * - :py:class:`~pywa.types.system.IdentityChange`
-     - A user's identity changed
+     - A identidade de um usuário foi alterada
    * - :py:class:`~pywa.types.calls.CallConnect`
-     - A call connected by a user
+     - Uma chamada conectada por um usuário
    * - :py:class:`~pywa.types.calls.CallTerminate`
-     - A call terminated by a user
+     - Uma chamada encerrada por um usuário
    * - :py:class:`~pywa.types.calls.CallStatus`
-     - A call status update (ringing, busy, etc.)
+     - Uma atualização de status de chamada (tocando, ocupado, etc.)
    * - :py:class:`~pywa.types.calls.CallPermissionUpdate`
-     - A call permission update (permission granted or denied)
+     - Uma atualização de permissão de chamada (permissão concedida ou negada)
    * - :py:class:`~pywa.types.user_preferences.UserMarketingPreferences`
-     - A user marketing preferences update (e.g. opted in, opted out)
+     - Uma atualização de preferências de marketing do usuário (por ex. optou por receber, optou por não receber)
 
-**Account-related updates:**
+**Atualizações relacionadas à conta:**
 
 .. list-table::
    :widths: 25 75
    :header-rows: 1
 
-   * - Type
-     - Description
+   * - Tipo
+     - Descrição
    * - :py:class:`~pywa.types.templates.TemplateStatusUpdate`
-     - A template status update (approved, rejected, etc.)
+     - Uma atualização de status de template (aprovado, rejeitado, etc.)
    * - :py:class:`~pywa.types.templates.TemplateCategoryUpdate`
-     - A template category update (category changed)
+     - Uma atualização de categoria de template (categoria alterada)
    * - :py:class:`~pywa.types.templates.TemplateQualityUpdate`
-     - A template quality update (quality score changed)
+     - Uma atualização de qualidade de template (pontuação de qualidade alterada)
    * - :py:class:`~pywa.types.templates.TemplateComponentsUpdate`
-     - A template components update (header, body, footer, buttons changed)
+     - Uma atualização de componentes de template (cabeçalho, corpo, rodapé, botões alterados)
 
 -----------------
-Common Properties
+Propriedades Comuns
 -----------------
 
 .. currentmodule:: pywa.types.base_update
 
-All updates share common methods and properties:
+Todas as atualizações compartilham métodos e propriedades comuns:
 
 .. list-table::
    :widths: 25 75
    :header-rows: 1
 
-   * - Property
-     - Description
+   * - Propriedade
+     - Descrição
    * - :attr:`~BaseUpdate.id`
-     - The update ID
+     - O ID da atualização
    * - :attr:`~BaseUpdate.raw`
-     - The raw update data
+     - Os dados brutos da atualização
    * - :attr:`~BaseUpdate.timestamp`
-     - The update timestamp (UTC)
+     - O timestamp da atualização (UTC)
    * - :attr:`~BaseUpdate.shared_data`
-     - A dictionary to share data between handlers
+     - Um dicionário para compartilhar dados entre handlers
    * - :meth:`~BaseUpdate.stop_handling`
-     - Prevent further handlers from processing the update
+     - Impede que outros handlers processem a atualização
    * - :meth:`~BaseUpdate.continue_handling`
-     - Force the update to continue to the next handler
+     - Força a atualização a continuar para o próximo handler
    * - :meth:`~BaseUpdate.handle_again`
-     - Re-handle the update from the first handler
+     - Re-processa a atualização a partir do primeiro handler
 
-**User-related updates** share additional properties:
+**Atualizações relacionadas ao usuário** compartilham propriedades adicionais:
 
 .. list-table::
    :widths: 25 75
    :header-rows: 1
 
-   * - Method / Property
-     - Description
+   * - Método / Propriedade
+     - Descrição
    * - :attr:`~BaseUserUpdate.sender`
-     - The phone ID of the sender
+     - O ID de telefone do remetente
    * - :attr:`~BaseUserUpdate.recipient`
-     - The phone ID of the recipient
+     - O ID de telefone do destinatário
    * - :attr:`~BaseUserUpdate.message_id_to_reply`
-     - The message ID to reply to
+     - O ID da mensagem para responder
    * - :meth:`~BaseUserUpdate.reply_text`
-     - Reply with a text message
+     - Responder com uma mensagem de texto
    * - :meth:`~BaseUserUpdate.reply_image`
-     - Reply with an image message
+     - Responder com uma mensagem de imagem
    * - :meth:`~BaseUserUpdate.reply_video`
-     - Reply with a video message
+     - Responder com uma mensagem de vídeo
    * - :meth:`~BaseUserUpdate.reply_audio`
-     - Reply with an audio message
+     - Responder com uma mensagem de áudio
    * - :meth:`~BaseUserUpdate.reply_voice`
-     - Reply with a voice message
+     - Responder com uma mensagem de voz
    * - :meth:`~BaseUserUpdate.reply_document`
-     - Reply with a document message
+     - Responder com uma mensagem de documento
    * - :meth:`~BaseUserUpdate.reply_location`
-     - Reply with a location message
+     - Responder com uma mensagem de localização
    * - :meth:`~BaseUserUpdate.reply_location_request`
      - Request the user’s location
    * - :meth:`~BaseUserUpdate.reply_contact`
-     - Reply with a contact message
+     - Responder com uma mensagem de contato
    * - :meth:`~BaseUserUpdate.reply_sticker`
-     - Reply with a sticker message
+     - Responder com uma mensagem de sticker
    * - :meth:`~BaseUserUpdate.reply_template`
-     - Reply with a template message
+     - Responder com uma mensagem de template
    * - :meth:`~BaseUserUpdate.reply_catalog`
-     - Reply with a catalog message
+     - Responder com uma mensagem de catálogo
    * - :meth:`~BaseUserUpdate.reply_product`
-     - Reply with a product message
+     - Responder com uma mensagem de produto
    * - :meth:`~BaseUserUpdate.reply_products`
-     - Reply with a list of product messages
+     - Responder com uma lista de mensagens de produtos
    * - :meth:`~BaseUserUpdate.react`
-     - React to the update with an emoji
+     - Reagir à atualização com um emoji
    * - :meth:`~BaseUserUpdate.unreact`
-     - Remove a reaction
+     - Remover uma reação
    * - :meth:`~BaseUserUpdate.mark_as_read`
-     - Mark the update as read
+     - Marcar a atualização como lida
    * - :meth:`~BaseUserUpdate.indicate_typing`
-     - Indicate typing to the user
+     - Indicar digitação ao usuário
    * - :meth:`~BaseUserUpdate.block_sender`
-     - Block the sender
+     - Bloquear o remetente
    * - :meth:`~BaseUserUpdate.unblock_sender`
-     - Unblock the sender
+     - Desbloquear o remetente
    * - :meth:`~BaseUserUpdate.call`
-     - Start a call with the sender
+     - Iniciar uma chamada com o remetente
 
 .. toctree::
     message

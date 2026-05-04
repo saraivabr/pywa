@@ -3,30 +3,30 @@
 
 .. currentmodule:: pywa.types.flows
 
-PyWa has a built-in support for WhatsApp Flows, which allows you to create structured interactions with your users.
+PyWa tem suporte nativo a WhatsApp Flows, permitindo criar interações estruturadas com seus usuários.
 
-From `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/flows>`_:
+De `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/flows>`_:
 
     .. image:: ../../../../_static/guides/flows-new.webp
         :alt: WhatsApp Flows
         :width: 100%
 
-    WhatsApp Flows is a way to build structured interactions for business messaging. With Flows, businesses can define, configure, and customize messages with rich interactions that give customers more structure in the way they communicate.
+    WhatsApp Flows é uma forma de criar interações estruturadas para mensagens empresariais. Com Flows, as empresas podem definir, configurar e personalizar mensagens com interações ricas que oferecem aos clientes mais estrutura na forma como se comunicam.
 
-    You can use Flows to book appointments, browse products, collect customer feedback, get new sales leads, or anything else where structured communication is more natural or comfortable for your customers.
+    Você pode usar Flows para agendar consultas, navegar por produtos, coletar feedback de clientes, obter novos leads de vendas ou qualquer outra situação em que a comunicação estruturada seja mais natural ou conveniente para seus clientes.
 
-The Flows are separated into 4 parts:
+Os Flows são divididos em 4 partes:
 
-- Creating Flow
-- Sending Flow
-- Handling Flow requests and responding to them (Only for dynamic flows)
-- Getting Flow Completion
+- Criando o Flow
+- Enviando o Flow
+- Processando requisições do Flow e respondendo a elas (somente para flows dinâmicos)
+- Obtendo a conclusão do Flow
 
-Creating Flow
--------------
+Criando o Flow
+--------------
 
-First you need to create the flow, give it a name and set the categories by calling :meth:`~pywa.client.WhatsApp.create_flow`:
-    You can also create the flows using the `WhatsApp Flow Builder <https://business.facebook.com/wa/manage/flows/>`_.
+Primeiro você precisa criar o flow, dar um nome e definir as categorias chamando :meth:`~pywa.client.WhatsApp.create_flow`:
+    Você também pode criar os flows usando o `WhatsApp Flow Builder <https://business.facebook.com/wa/manage/flows/>`_.
 
 .. code-block:: python
     :linenos:
@@ -45,11 +45,11 @@ First you need to create the flow, give it a name and set the categories by call
 
     # FlowDetails(id='1234567890123456', name='My New Flow', status=FlowStatus.DRAFT, ...)
 
-Now you can start building the flow structure.
+Agora você pode começar a construir a estrutura do flow.
 
 .. tip::
 
-    You can also provide the flow json when creating the flow by passing the ``flow_json`` argument to :meth:`~pywa.client.WhatsApp.create_flow`, but here we treat it separately.
+    Você também pode fornecer o flow json ao criar o flow passando o argumento ``flow_json`` para :meth:`~pywa.client.WhatsApp.create_flow`, mas aqui tratamos isso separadamente.
 
     .. code-block:: python
         :linenos:
@@ -61,30 +61,30 @@ Now you can start building the flow structure.
             publish=True,  # If you want to publish the flow immediately
         )
 
-A flow is collection of screens containing components. screens can exchange data with each other and with your server.
+Um flow é uma coleção de telas contendo componentes. As telas podem trocar dados entre si e com o seu servidor.
 
-Flow can be static: all the components settings are predefined and no interaction is required from your server.
-Or it can be dynamic: your server can respond to screen actions and determine the next screen to display (or close the flow) and the data to provide to it.
+O flow pode ser estático: todas as configurações dos componentes são predefinidas e nenhuma interação é necessária do seu servidor.
+Ou pode ser dinâmico: seu servidor pode responder às ações das telas e determinar a próxima tela a exibir (ou fechar o flow) e os dados a fornecer.
 
-Available components
----------------------
+Componentes disponíveis
+-----------------------
 
-Every component on the FlowJSON has a corresponding class in :mod:`pywa.types.flows`:
+Cada componente no FlowJSON tem uma classe correspondente em :mod:`pywa.types.flows`:
 
 .. list-table::
    :widths: 10 60
    :header-rows: 1
 
-   * - Category
-     - Types
-   * - Static elements
+   * - Categoria
+     - Tipos
+   * - Elementos estáticos
      - :class:`RichText`,
        :class:`TextHeading`,
        :class:`TextSubheading`,
        :class:`TextBody`,
        :class:`TextCaption`,
        :class:`Image`
-   * - Collect data
+   * - Coletar dados
      - :class:`Form`,
        :class:`TextInput`,
        :class:`TextArea`,
@@ -97,20 +97,20 @@ Every component on the FlowJSON has a corresponding class in :mod:`pywa.types.fl
        :class:`CalendarPicker`,
        :class:`PhotoPicker`,
        :class:`DocumentPicker`
-   * - Navigation
+   * - Navegação
      - :class:`EmbeddedLink`,
        :class:`NavigationList`,
        :class:`Footer`
-   * - Conditional Component Rendering
+   * - Renderização Condicional de Componentes
      - :class:`If`,
        :class:`Switch`
-   * - Actions
+   * - Ações
      - :class:`DataExchangeAction`,
        :class:`NavigateAction`,
        :class:`CompleteAction`,
        :class:`UpdateDataAction`,
        :class:`OpenURLAction`
-   * - Helpers
+   * - Auxiliares
      - :class:`ScreenData`,
        :class:`ScreenDataUpdate`,
        :class:`ScreenDataRef`,
@@ -121,7 +121,7 @@ Every component on the FlowJSON has a corresponding class in :mod:`pywa.types.fl
 
 ==================
 
-**Here is an example of static flow:**
+**Aqui está um exemplo de flow estático:**
 
 .. code-block:: python
     :caption: newsletter_flow.py
@@ -176,7 +176,7 @@ Every component on the FlowJSON has a corresponding class in :mod:`pywa.types.fl
     )
 
 
-Which is the equivalent of the following flow json:
+Que é o equivalente ao seguinte flow json:
 
 .. toggle::
 
@@ -236,14 +236,14 @@ Which is the equivalent of the following flow json:
             ]
         }
 
-And this is how it looks like on WhatsApp (iOS/Android):
+E é assim que fica no WhatsApp (iOS/Android):
 
 .. figure:: ../../../../_static/guides/simple-newsletter-flow.png
     :align: center
 
 ==================
 
-After you have the flow json, you can update the flow with :meth:`~pywa.client.WhatsApp.update_flow_json`:
+Depois de ter o flow json, você pode atualizar o flow com :meth:`~pywa.client.WhatsApp.update_flow_json`:
 
 
 .. code-block:: python
@@ -267,9 +267,9 @@ After you have the flow json, you can update the flow with :meth:`~pywa.client.W
                 print(error)
 
 
-The ``flow_json`` argument can be :class:`FlowJSON`, a :class:`dict`, json :class:`str`, json file :class:`pathlib.Path` or a file-like object.
+O argumento ``flow_json`` pode ser :class:`FlowJSON`, um :class:`dict`, uma :class:`str` json, um arquivo json :class:`pathlib.Path` ou um objeto semelhante a arquivo.
 
-You can get the :class:`FlowDetails` of the flow with :meth:`~pywa.client.WhatsApp.get_flow`:
+Você pode obter os :class:`FlowDetails` do flow com :meth:`~pywa.client.WhatsApp.get_flow`:
 
 .. code-block:: python
     :linenos:
@@ -277,7 +277,7 @@ You can get the :class:`FlowDetails` of the flow with :meth:`~pywa.client.WhatsA
     flow = wa.get_flow(created.id)
     print(flow)
 
-Or getting all the flows with :meth:`~pywa.client.WhatsApp.get_flows`:
+Ou obtendo todos os flows com :meth:`~pywa.client.WhatsApp.get_flows`:
 
 .. code-block:: python
     :linenos:
@@ -287,15 +287,15 @@ Or getting all the flows with :meth:`~pywa.client.WhatsApp.get_flows`:
         print(flow)
 
 
-To test your flow you need to sent it:
+Para testar seu flow, você precisa enviá-lo:
 
-Sending Flow
-------------
+Enviando o Flow
+---------------
 
 .. currentmodule:: pywa.types.callback
 
-Flow is just a :class:`FlowButton` attached to a message.
-Let's see how to send text message with flow:
+Um flow é apenas um :class:`FlowButton` anexado a uma mensagem.
+Veja como enviar uma mensagem de texto com flow:
 
 .. currentmodule:: pywa.types.flows
 
@@ -321,12 +321,12 @@ Let's see how to send text message with flow:
     )
 
 
-Getting Flow Completion message
--------------------------------
+Obtendo a mensagem de conclusão do Flow
+---------------------------------------
 
-When the user completes the flow, you will receive a request to your webhook with the payload you sent when you completed the flow.
+Quando o usuário conclui o flow, você receberá uma requisição no seu webhook com o payload enviado ao concluir o flow.
 
-Here is how to listen to flow completion update:
+Veja como ouvir a atualização de conclusão do flow:
 
 .. code-block:: python
     :linenos:
@@ -341,12 +341,12 @@ Here is how to listen to flow completion update:
         print(f"The user {flow.from_user.name} just completed the flow!")
         print(flow.response)
 
-The ``.response`` attribute is the payload you sent when you completed the flow.
+O atributo ``.response`` é o payload enviado ao concluir o flow.
 
 .. note::
 
-    if you using :class:`PhotoPicker` or :class:`DocumentPicker` components, you will receive the files inside the flow completion .response.
-    You can constract them into pywa media objects by using :meth:`~pywa.types.FlowCompletion.get_media`:
+    Se você usar componentes :class:`PhotoPicker` ou :class:`DocumentPicker`, receberá os arquivos dentro do .response da conclusão do flow.
+    Você pode construí-los como objetos de mídia do pywa usando :meth:`~pywa.types.FlowCompletion.get_media`:
 
     .. code-block:: python
         :linenos:
@@ -361,35 +361,35 @@ The ``.response`` attribute is the payload you sent when you completed the flow.
             img.download()
 
 
-Handling Flow requests
-----------------------
+Processando requisições do Flow
+--------------------------------
 
-This is when things get interesting. WhatsApp Flows can be dynamic, which means that you can handle user actions and respond to them in real-time from your server.
+É aqui que as coisas ficam interessantes. WhatsApp Flows pode ser dinâmico, o que significa que você pode lidar com ações do usuário e responder a elas em tempo real a partir do seu servidor.
 
 
 .. note::
 
-    Since the requests and responses can contain sensitive data, such as passwords and other personal information,
-    all the requests and responses are encrypted using the `WhatsApp Business Encryption <https://developers.facebook.com/docs/whatsapp/cloud-api/reference/whatsapp-business-encryption>`_.
+    Como as requisições e respostas podem conter dados sensíveis, como senhas e outras informações pessoais,
+    todas as requisições e respostas são criptografadas usando a `WhatsApp Business Encryption <https://developers.facebook.com/docs/whatsapp/cloud-api/reference/whatsapp-business-encryption>`_.
 
-    Before you continue, you need to sign and upload the business public key.
-    First you need to generate a private key and a public key:
+    Antes de continuar, você precisa assinar e fazer o upload da chave pública da empresa.
+    Primeiro você precisa gerar uma chave privada e uma chave pública:
 
-    Generate a public and private RSA key pair by typing in the following command:
+    Gere um par de chaves RSA pública e privada digitando o seguinte comando:
 
     >>> openssl genrsa -des3 -out private.pem 2048
 
 
-    This generates 2048-bit RSA key pair encrypted with a password you provided and is written to a file.
+    Isso gera um par de chaves RSA de 2048 bits criptografado com a senha fornecida e salvo em um arquivo.
 
-    Next, you need to export the RSA Public Key to a file.
+    Em seguida, você precisa exportar a Chave Pública RSA para um arquivo.
 
     >>> openssl rsa -in private.pem -outform PEM -pubout -out public.pem
 
 
-    This exports the RSA Public Key to a file.
+    Isso exporta a Chave Pública RSA para um arquivo.
 
-    Once you have the public key, you can upload it using the :meth:`~pywa.client.WhatsApp.set_business_public_key` method.
+    Depois de ter a chave pública, você pode fazer o upload dela usando o método :meth:`~pywa.client.WhatsApp.set_business_public_key`.
 
     .. code-block:: python
         :linenos:
@@ -400,7 +400,7 @@ This is when things get interesting. WhatsApp Flows can be dynamic, which means 
 
         wa.set_business_public_key(open("public.pem").read())
 
-    Every request need to be decrypted using the private key. so you need to provide it when you create the :class:`WhatsApp` object:
+    Cada requisição precisa ser descriptografada usando a chave privada, portanto você precisa fornecê-la ao criar o objeto :class:`WhatsApp`:
 
     .. code-block:: python
         :linenos:
@@ -409,18 +409,18 @@ This is when things get interesting. WhatsApp Flows can be dynamic, which means 
 
         wa = WhatsApp(..., business_private_key=open("private.pem").read())
 
-    Now you are ready to handle the requests.
+    Agora você está pronto para processar as requisições.
 
-    Just one more thing, the default decryption & encryption implementation is using the `cryptography <https://cryptography.io/en/latest/>`_ library,
-    So you need to install it:
+    Mais uma coisa: a implementação padrão de descriptografia e criptografia usa a biblioteca `cryptography <https://cryptography.io/en/latest/>`_,
+    portanto você precisa instalá-la:
 
     >>> pip3 install cryptography
 
-    Or when installing PyWa:
+    Ou ao instalar o PyWa:
 
     >>> pip3 install "pywa[cryptography]"
 
-Let's see an example of a dynamic flow:
+Veja um exemplo de flow dinâmico:
 
 
 .. code-block:: python
@@ -606,7 +606,7 @@ Let's see an example of a dynamic flow:
         ],
     )
 
-Which is the equivalent of the following flow json:
+Que é o equivalente ao seguinte flow json:
 
 .. toggle::
 
@@ -853,22 +853,22 @@ Which is the equivalent of the following flow json:
         }
 
 
-This flow has 4 screens:
+Este flow tem 4 telas:
 
-- ``SIGN_IN`` - The first screen that the user sees when they open the flow. It has a form to sign in and links to sign up and forgot password screens.
-- ``SIGN_UP`` - The screen that the user sees when they click on the sign up link in the sign in screen. It has a form to sign up and a link to the terms and conditions screen.
-- ``FORGOT_PASSWORD`` - The screen that the user sees when they click on the forgot password link in the sign in screen. It has a form to send a reset link to the user's email address.
-- ``TERMS_AND_CONDITIONS`` - The screen that the user sees when they click on the terms and conditions link in the sign up screen. It has the terms and conditions text.
+- ``SIGN_IN`` - A primeira tela que o usuário vê ao abrir o flow. Contém um formulário de login e links para as telas de cadastro e recuperação de senha.
+- ``SIGN_UP`` - A tela que o usuário vê ao clicar no link de cadastro na tela de login. Contém um formulário de cadastro e um link para a tela de termos e condições.
+- ``FORGOT_PASSWORD`` - A tela que o usuário vê ao clicar no link de recuperação de senha na tela de login. Contém um formulário para enviar um link de redefinição ao endereço de e-mail do usuário.
+- ``TERMS_AND_CONDITIONS`` - A tela que o usuário vê ao clicar no link de termos e condições na tela de cadastro. Contém o texto dos termos e condições.
 
-Let's dive into the main concepts of dynamic flows:
+Vamos explorar os principais conceitos de flows dinâmicos:
 
-- **data_api_version**: This is the version of the data API that the flow uses. It is used to determine how the data is exchanged between the client and the server. The current version is ``3.0``.
-- **routing_model**: This is a dictionary that defines the flow routing. It maps screen ids to other screen ids that can be navigated to from the current screen. For example, from the ``SIGN_IN`` screen, you can navigate to the ``SIGN_UP`` or ``FORGOT_PASSWORD`` screens. You can read more about Routing Model in `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/flows/reference/flowjson#routing-model>`_.
-- **data**: This is a list of :class:`ScreenData` objects that define the data that should be provided to the screen when navigating to it. This data can be used to pre-fill the form fields or provide other information to the user. For example, in the ``SIGN_IN`` screen, we have a ``welcome`` screen data that provides a welcome message and a ``default_email`` screen data that provides a default email address to pre-fill the email field (you will see why we need it later).
-- **ref**: This is a reference to the screen data or the component that stores an user input. It is used to refer to the data inside the flow. For example, in the ``SIGN_IN`` screen, we have a ``signin_email`` component that has a reference to the email field. We can use this reference to get the value of the email field when the user submits the form.
-- **on_click_action**: This is an action that is executed when the user clicks on a button or a link. It can be a :class:`DataExchangeAction`, :class:`NavigateAction`, :class:`CompleteAction` or :class:`OpenURLAction`. For example, in the ``SIGN_IN`` screen, we have a ``Footer`` component with a label "Sign in" that has an :class:`DataExchangeAction` that sends the email and password to the server when the user clicks on it. the server will then validate the credentials and respond with the next screen to display or close the flow.
+- **data_api_version**: É a versão da API de dados utilizada pelo flow. É usada para determinar como os dados são trocados entre o cliente e o servidor. A versão atual é ``3.0``.
+- **routing_model**: É um dicionário que define o roteamento do flow. Mapeia IDs de telas para outros IDs de telas para as quais se pode navegar a partir da tela atual. Por exemplo, da tela ``SIGN_IN``, você pode navegar para as telas ``SIGN_UP`` ou ``FORGOT_PASSWORD``. Você pode ler mais sobre o Routing Model em `developers.facebook.com <https://developers.facebook.com/docs/whatsapp/flows/reference/flowjson#routing-model>`_.
+- **data**: É uma lista de objetos :class:`ScreenData` que define os dados que devem ser fornecidos à tela ao navegar para ela. Esses dados podem ser usados para pré-preencher campos do formulário ou fornecer outras informações ao usuário. Por exemplo, na tela ``SIGN_IN``, temos um screen data ``welcome`` que fornece uma mensagem de boas-vindas e um screen data ``default_email`` que fornece um endereço de e-mail padrão para pré-preencher o campo de e-mail (você verá por que precisamos disso mais adiante).
+- **ref**: É uma referência ao screen data ou ao componente que armazena uma entrada do usuário. É usada para referenciar os dados dentro do flow. Por exemplo, na tela ``SIGN_IN``, temos um componente ``signin_email`` com uma referência ao campo de e-mail. Podemos usar essa referência para obter o valor do campo de e-mail quando o usuário enviar o formulário.
+- **on_click_action**: É uma ação executada quando o usuário clica em um botão ou link. Pode ser uma :class:`DataExchangeAction`, :class:`NavigateAction`, :class:`CompleteAction` ou :class:`OpenURLAction`. Por exemplo, na tela ``SIGN_IN``, temos um componente ``Footer`` com o rótulo "Sign in" que possui uma :class:`DataExchangeAction` que envia o e-mail e a senha ao servidor quando o usuário clica. O servidor então validará as credenciais e responderá com a próxima tela a exibir ou encerrará o flow.
 
-We need to update the flow with this json using :meth:`~pywa.client.WhatsApp.update_flow_json` and then tell WhatsApp to send the requests to our server using :meth:`~pywa.client.WhatsApp.update_flow_metadata`:
+Precisamos atualizar o flow com este json usando :meth:`~pywa.client.WhatsApp.update_flow_json` e então informar ao WhatsApp para enviar as requisições ao nosso servidor usando :meth:`~pywa.client.WhatsApp.update_flow_metadata`:
 
 .. code-block:: python
     :linenos:
@@ -883,7 +883,7 @@ We need to update the flow with this json using :meth:`~pywa.client.WhatsApp.upd
         endpoint_uri="https://your-server.com/flow"
     )
 
-Let's send the flow. this time with an image:
+Vamos enviar o flow, desta vez com uma imagem:
 
 .. code-block:: python
     :linenos:
@@ -906,8 +906,8 @@ Let's send the flow. this time with an image:
         )
     )
 
-Here we set the ``flow_action_type`` to ``FlowActionType.DATA_EXCHANGE`` since we want to exchange data with the server.
-So, when the user opens the flow, we will receive a request to our server to provide the screen to open and the data to provide to it.
+Aqui definimos o ``flow_action_type`` como ``FlowActionType.DATA_EXCHANGE`` porque queremos trocar dados com o servidor.
+Assim, quando o usuário abre o flow, receberemos uma requisição no nosso servidor para fornecer a tela a abrir e os dados a disponibilizar.
 
 
 .. code-block:: python
@@ -1044,8 +1044,8 @@ So, when the user opens the flow, we will receive a request to our server to pro
 
 .. note::
 
-    If you using :class:`PhotoPicker` or :class:`DocumentPicker` components, and handling requests containing their data, you need
-    to decrypt the files using :meth:`~pywa.types.flows.FlowRequest.decrypt_media`:
+    Se você usar componentes :class:`PhotoPicker` ou :class:`DocumentPicker` e processar requisições contendo seus dados, você precisa
+    descriptografar os arquivos usando :meth:`~pywa.types.flows.FlowRequest.decrypt_media`:
 
     .. code-block:: python
         :linenos:
